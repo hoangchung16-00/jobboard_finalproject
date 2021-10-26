@@ -8,22 +8,22 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "requestRecruit")
+@Table(name = "requestrecruit")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class RequestRecruit {
     @Id
-    private int Id;
+    private int id;
     @ManyToOne
-    @JoinColumn(name = "JobId")
+    @JoinColumn(name = "jobid")
     private Job job;
     @ManyToOne
-    @JoinColumn(name = "UsersId")
+    @JoinColumn(name = "usersid")
     private Users user;
     @ManyToOne
-    @JoinColumn(name = "StatusId")
+    @JoinColumn(name = "statusid")
     private Status status;
 
     public RequestRecruit(Job job, Users user, Status status) {

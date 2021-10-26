@@ -8,20 +8,20 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 @Entity
-@Table(name = "levelType")
+@Table(name = "leveltype")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class LevelType {
     @Id
-    private int Id;
-    private String Name;
+    private int id;
+    private String name;
     @OneToMany(mappedBy = "levelType",fetch = FetchType.LAZY)
     private List<SkillJob> skillJobList;
 
     public LevelType(String name, List<SkillJob> skillJobList) {
-        Name = name;
+        name = name;
         this.skillJobList = skillJobList;
     }
 }

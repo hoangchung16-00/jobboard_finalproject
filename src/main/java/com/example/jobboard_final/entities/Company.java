@@ -15,32 +15,34 @@ import java.util.List;
 @NoArgsConstructor
 public class Company {
     @Id
-    private int Id;
-    private String Name;
-    private String ShortDescription;
-    private String Address;
-    private String Website;
-    private int FoundationYear;
-    private int Employee;
-    private String Description;
-    private String Email;
-    private String PhoneNumber;
+    private int id;
+    private String name;
+    private String shortdescription;
+    private String address;
+    private String website;
+    private int foundationyear;
+    private int employee;
+    private String description;
+    private String email;
+    private String phonenumber;
+    private String image;
     @OneToOne
-    @JoinColumn(name = "AccountId")
+    @JoinColumn(name = "accountid")
     private Account account;
     @OneToMany(mappedBy = "company",fetch = FetchType.LAZY)
     private List<Job> jobList;
 
-    public Company(String name, String shortDescription, String address, String website, int foundationYear, int employee, String description, String email, String phoneNumber, Account account, List<Job> jobList) {
-        Name = name;
-        ShortDescription = shortDescription;
-        Address = address;
-        Website = website;
-        FoundationYear = foundationYear;
-        Employee = employee;
-        Description = description;
-        Email = email;
-        PhoneNumber = phoneNumber;
+    public Company(String name, String shortdescription, String address, String website, int foundationyear, int employee, String description, String email, String phonenumber, String image, Account account, List<Job> jobList) {
+        this.name = name;
+        this.shortdescription = shortdescription;
+        this.address = address;
+        this.website = website;
+        this.foundationyear = foundationyear;
+        this.employee = employee;
+        this.description = description;
+        this.email = email;
+        this.phonenumber = phonenumber;
+        this.image = image;
         this.account = account;
         this.jobList = jobList;
     }

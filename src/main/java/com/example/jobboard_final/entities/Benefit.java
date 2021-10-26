@@ -15,14 +15,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Benefit {
     @Id
-    private int Id;
-    private String Description;
+    private int id;
+    private String description;
     @ManyToOne
-    @JoinColumn(name = "JobId")
+    @JoinColumn(name = "jobid")
     private Job job;
 
     public Benefit(String description, Job job) {
-        Description = description;
+        this.description = description;
         this.job = job;
     }
 }

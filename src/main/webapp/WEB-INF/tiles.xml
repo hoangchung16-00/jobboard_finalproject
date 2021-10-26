@@ -19,6 +19,7 @@
     </definition>
     <definition name="home" extends="mainLayout.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/home.jsp"/>
+        <put-attribute name="listjob" value="/WEB-INF/jsp/component/listjob.jsp"/>
     </definition>
 
 </tiles-definitions>

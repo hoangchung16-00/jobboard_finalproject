@@ -17,17 +17,17 @@ import java.util.List;
 @NoArgsConstructor
 public class Users {
     @Id
-    private int Id;
-    private String Name;
-    private String PhoneNumber;
-    private String Email;
-    private String Address;
-    private Date DOB;
-    private String Education;
-    private String Descroiption;
-    private String Hobby;
+    private int id;
+    private String name;
+    private String phonenumber;
+    private String email;
+    private String address;
+    private Date dob;
+    private String education;
+    private String description;
+    private String hobby;
     @OneToOne
-    @JoinColumn(name = "AccountId")
+    @JoinColumn(name = "accountid")
     private Account account;
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<SkillUsers> skillUsersList;
@@ -36,15 +36,15 @@ public class Users {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<RequestRecruit> requestRecruitList;
 
-    public Users(String name, String phoneNumber, String email, String address, Date DOB, String education, String descroiption, String hobby, Account account, List<SkillUsers> skillUsersList, List<LinkUsers> linkUsersList, List<RequestRecruit> requestRecruitList) {
-        Name = name;
-        PhoneNumber = phoneNumber;
-        Email = email;
-        Address = address;
-        this.DOB = DOB;
-        Education = education;
-        Descroiption = descroiption;
-        Hobby = hobby;
+    public Users(String name, String phonenumber, String email, String address, Date dob, String education, String description, String hobby, Account account, List<SkillUsers> skillUsersList, List<LinkUsers> linkUsersList, List<RequestRecruit> requestRecruitList) {
+        this.name = name;
+        this.phonenumber = phonenumber;
+        this.email = email;
+        this.address = address;
+        this.dob = dob;
+        this.education = education;
+        this.description = description;
+        this.hobby = hobby;
         this.account = account;
         this.skillUsersList = skillUsersList;
         this.linkUsersList = linkUsersList;

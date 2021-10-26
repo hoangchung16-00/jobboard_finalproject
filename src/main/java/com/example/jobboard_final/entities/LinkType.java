@@ -8,20 +8,20 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 @Entity
-@Table(name = "linkType")
+@Table(name = "linktype")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class LinkType {
     @Id
-    private int Id;
-    private String Name;
+    private int id;
+    private String name;
     @OneToMany(mappedBy = "linkType",fetch = FetchType.LAZY)
     private List<LinkUsers>  linkUsersList;
 
     public LinkType(String name, List<LinkUsers> linkUsersList) {
-        Name = name;
+        name = name;
         this.linkUsersList = linkUsersList;
     }
 

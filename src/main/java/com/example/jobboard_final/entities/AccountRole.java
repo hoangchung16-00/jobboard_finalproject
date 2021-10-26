@@ -9,20 +9,20 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "accountRole")
+@Table(name = "accountrole")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountRole {
     @Id
-    private int Id;
-    private String Name;
-    @OneToMany(mappedBy = "accountRole",fetch = FetchType.LAZY)
-    private List<Account> accountList;
+    private int id;
+    private String name;
+    @OneToMany(mappedBy = "accountrole",fetch = FetchType.LAZY)
+    private List<Account> accountlist;
 
-    public AccountRole(String name, List<Account> accountList) {
-        Name = name;
-        this.accountList = accountList;
+    public AccountRole(String name, List<Account> accountlist) {
+        this.name = name;
+        this.accountlist = accountlist;
     }
 }

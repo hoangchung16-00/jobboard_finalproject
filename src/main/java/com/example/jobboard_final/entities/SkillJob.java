@@ -8,24 +8,24 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "skillJob")
+@Table(name = "skilljob")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class SkillJob {
     @Id
-    private int Id;
-    private String Name;
+    private int id;
+    private String name;
     @ManyToOne
-    @JoinColumn(name = "LevelTypeId")
+    @JoinColumn(name = "leveltypeid")
     private LevelType levelType;
     @ManyToOne
     @JoinColumn(name = "JobId")
     private Job job;
 
     public SkillJob(String name, LevelType levelType, Job job) {
-        Name = name;
+        name = name;
         this.levelType = levelType;
         this.job = job;
     }

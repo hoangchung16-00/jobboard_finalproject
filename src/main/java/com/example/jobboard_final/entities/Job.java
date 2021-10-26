@@ -17,24 +17,24 @@ import java.util.List;
 @NoArgsConstructor
 public class Job {
     @Id
-    private int Id;
-    private String Name;
-    private String ShortDescription;
-    private String Description;
-    private String Address;
-    private int Number;
-    private BigDecimal MinSalary;
-    private BigDecimal MaxSalary;
-    private Date ExpireDate;
-    private Date PostDate;
+    private Long id;
+    private String name;
+    private String shortdescription;
+    private String description;
+    private String address;
+    private int number;
+    private BigDecimal minsalary;
+    private BigDecimal maxsalary;
+    private Date expiredate;
+    private Date postdate;
     @ManyToOne
-    @JoinColumn(name = "JobStatusId")
+    @JoinColumn(name = "jobstatusid")
     private JobStatus jobStatus;
     @ManyToOne
-    @JoinColumn(name = "CompanyId")
+    @JoinColumn(name = "companyid")
     private Company company;
     @ManyToOne
-    @JoinColumn(name = "JobTypeId")
+    @JoinColumn(name = "jobtypeid")
     private JobType jobType;
     @OneToMany(mappedBy = "job",fetch = FetchType.LAZY)
     private List<SkillJob> skillJobList;
@@ -43,16 +43,16 @@ public class Job {
     @OneToMany(mappedBy = "job",fetch = FetchType.LAZY)
     private List<RequestRecruit> requestRecruitList;
 
-    public Job(String name, String shortDescription, String description, String address, int number, BigDecimal minSalary, BigDecimal maxSalary, Date expireDate, Date postDate, JobStatus jobStatus, Company company, JobType jobType, List<SkillJob> skillJobList, List<Benefit> benefitList, List<RequestRecruit> requestRecruitList) {
-        Name = name;
-        ShortDescription = shortDescription;
-        Description = description;
-        Address = address;
-        Number = number;
-        MinSalary = minSalary;
-        MaxSalary = maxSalary;
-        ExpireDate = expireDate;
-        PostDate = postDate;
+    public Job(String name, String shortdescription, String description, String address, int number, BigDecimal minsalary, BigDecimal maxsalary, Date expiredate, Date postdate, JobStatus jobStatus, Company company, JobType jobType, List<SkillJob> skillJobList, List<Benefit> benefitList, List<RequestRecruit> requestRecruitList) {
+        this.name = name;
+        this.shortdescription = shortdescription;
+        this.description = description;
+        this.address = address;
+        this.number = number;
+        this.minsalary = minsalary;
+        this.maxsalary = maxsalary;
+        this.expiredate = expiredate;
+        this.postdate = postdate;
         this.jobStatus = jobStatus;
         this.company = company;
         this.jobType = jobType;

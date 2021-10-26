@@ -4,10 +4,11 @@
     <div class="container">
         <!-- Start Header Navigation -->
         <div class="navbar-header">
+
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="img/logo.png" class="logo" alt=""></a>
+            <a class="navbar-brand" href="index.html"><img src="/image/logo.png" class="logo" alt=""></a>
         </div>
         <!-- End Header Navigation -->
 

@@ -8,24 +8,24 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "linkUsers")
+@Table(name = "linkusers")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class LinkUsers {
     @Id
-    private int Id;
-    private String Link;
+    private int id;
+    private String link;
     @ManyToOne
-    @JoinColumn(name = "LinkTypeId")
+    @JoinColumn(name = "linktypeid")
     private LinkType linkType;
     @ManyToOne
-    @JoinColumn(name = "UsersId")
+    @JoinColumn(name = "usersid")
     private Users user;
 
     public LinkUsers(String link, LinkType linkType, Users user) {
-        Link = link;
+        this.link = link;
         this.linkType = linkType;
         this.user = user;
     }

@@ -16,21 +16,21 @@ import java.awt.*;
 @NoArgsConstructor
 public class Account {
     @Id
-    private int Id;
-    private String Username;
-    private String Password;
+    private int id;
+    private String username;
+    private String password;
     @ManyToOne
-    @JoinColumn(name = "AccountRoleId")
-    private AccountRole accountRole;
+    @JoinColumn(name = "accountroleid")
+    private AccountRole accountrole;
     @OneToOne(mappedBy = "account")
     private Users user;
     @OneToOne(mappedBy = "account")
     private Company company;
 
-    public Account(String username, String password, AccountRole accountRole, Users user, Company company) {
-        Username = username;
-        Password = password;
-        this.accountRole = accountRole;
+    public Account(String username, String password, AccountRole accountrole, Users user, Company company) {
+        this.username = username;
+        this.password = password;
+        this.accountrole = accountrole;
         this.user = user;
         this.company = company;
     }

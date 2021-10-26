@@ -16,13 +16,13 @@ import java.util.List;
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
-    private String Name;
+    private int id;
+    private String name;
     @OneToMany(mappedBy = "status",fetch = FetchType.LAZY)
     private List<RequestRecruit> requestRecruitList;
 
     public Status(String name, List<RequestRecruit> requestRecruitList) {
-        Name = name;
+        name = name;
         this.requestRecruitList = requestRecruitList;
     }
 }
