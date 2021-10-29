@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-10 col-sm-10">
             <div class="company-content">
-                <h3>${job.name}<span class="<c:if test="${job.jobType.name=='fulltime'}">full-time</c:if><c:if test="${job.jobType.name=='partime'}">part-time</c:if><c:if test="${job.jobType.name=='freelance'}">freelance</c:if>">${job.jobType.name}</span></h3>
+                <a href="/jobdetail?id=${job.id}"><h3>${job.name}<span class="${job.jobType.name}">${job.jobType.name}</span></h3></a>
                 <p><span class="company-name"><i class="fa fa-briefcase"></i>${job.company.name}</span><span class="company-location"><i class="fa fa-map-marker"></i> ${job.address}</span><span class="package"><i class="fa fa-money"></i><tag-money:money money="${job.minsalary}"/> - <tag-money:money money="${job.maxsalary}"/></span></p>
             </div>
         </div>

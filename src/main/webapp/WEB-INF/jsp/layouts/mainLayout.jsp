@@ -21,16 +21,12 @@
 <body>
 
 <tiles:insertAttribute name="navigation"/>
-<tiles:insertAttribute name="banner"/>
+
 
 
 
 
 <tiles:insertAttribute name="body" />
-
-
-
-<tiles:insertAttribute name="subscribe"/>
 
 
 <tiles:insertAttribute name="footer"/>

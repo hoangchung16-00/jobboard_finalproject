@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Users {
     @Id
-    private int id;
+    private Long id;
     private String name;
     private String phonenumber;
     private String email;
@@ -26,6 +26,8 @@ public class Users {
     private String education;
     private String description;
     private String hobby;
+    private String gender;
+    private String image;
     @OneToOne
     @JoinColumn(name = "accountid")
     private Account account;
@@ -36,7 +38,7 @@ public class Users {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<RequestRecruit> requestRecruitList;
 
-    public Users(String name, String phonenumber, String email, String address, Date dob, String education, String description, String hobby, Account account, List<SkillUsers> skillUsersList, List<LinkUsers> linkUsersList, List<RequestRecruit> requestRecruitList) {
+    public Users(String name, String phonenumber, String email, String address, Date dob, String education, String description, String hobby, String gender, String image, Account account, List<SkillUsers> skillUsersList, List<LinkUsers> linkUsersList, List<RequestRecruit> requestRecruitList) {
         this.name = name;
         this.phonenumber = phonenumber;
         this.email = email;
@@ -45,6 +47,8 @@ public class Users {
         this.education = education;
         this.description = description;
         this.hobby = hobby;
+        this.gender = gender;
+        this.image = image;
         this.account = account;
         this.skillUsersList = skillUsersList;
         this.linkUsersList = linkUsersList;

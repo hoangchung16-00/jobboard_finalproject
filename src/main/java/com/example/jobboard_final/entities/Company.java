@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Company {
     @Id
-    private int id;
+    private Long id;
     private String name;
     private String shortdescription;
     private String address;

@@ -15,16 +15,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class SkillUsers {
     @Id
-    private int id;
+    private Long id;
     private String name;
     private String experience;
     @ManyToOne
-    @JoinColumn(name = "UsersId")
+    @JoinColumn(name = "usersid")
     private Users user;
 
     public SkillUsers(String name, String experience, Users user) {
-        name = name;
-        experience = experience;
+        this.name = name;
+        this.experience = experience;
         this.user = user;
     }
 }

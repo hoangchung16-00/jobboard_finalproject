@@ -21,7 +21,7 @@ public class SkillJob {
     @JoinColumn(name = "leveltypeid")
     private LevelType levelType;
     @ManyToOne
-    @JoinColumn(name = "JobId")
+    @JoinColumn(name = "jobid")
     private Job job;
 
     public SkillJob(String name, LevelType levelType, Job job) {

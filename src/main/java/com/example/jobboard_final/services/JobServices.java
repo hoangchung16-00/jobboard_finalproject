@@ -21,4 +21,14 @@ public class JobServices {
     public int getTotalJob(){
         return  jobRepository.getTotalJob();
     }
+    @Transactional
+    public Job getJobById(Long id){
+        Job job = jobRepository.getJobById(id);
+        job.getSkillJobList().size();
+        return job;
+    }
+    @Transactional
+    public boolean existsById(Long id){
+        return jobRepository.existsById(id);
+    }
 }

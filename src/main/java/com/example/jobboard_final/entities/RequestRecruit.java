@@ -15,7 +15,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class RequestRecruit {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "jobid")
     private Job job;

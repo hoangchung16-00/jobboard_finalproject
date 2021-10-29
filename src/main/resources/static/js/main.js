@@ -8,4 +8,27 @@ $(document).ready(function(){
 				pagination: true,
 				autoPlay:false
 			});
-		});	
+		});
+function apply(id,isLogin) {
+	if(!isLogin){
+		window.location.href = "/login";
+	} else {
+		$.ajax({
+			type: 'GET',
+			contentType: "application/json",
+			url: '/apply',
+			data: {
+				id: id
+			},
+			success: function (result) {
+				var result = JSON.parse(result);
+				alert(result)
+			},
+			error: function (e) {
+				alert('error')
+				console.log("ERROR: ", e);
+			}
+		});
+	}
+
+}
