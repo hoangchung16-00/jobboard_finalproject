@@ -35,4 +35,21 @@ public class UserService {
     public List<Users> getUsers(){
         return userRepository.getUsers();
     }
+    @Transactional
+    public Users createUser(String username){
+        return userRepository.save(new Users(username,"user.png"));
+    }
+    @Transactional
+    public boolean existsByIdsocial(String id){
+        return userRepository.existsByIdsocial(id);
+    }
+    @Transactional
+    public Users createUser(String name,String image,String idsocial){
+        return userRepository.save(new Users(name,image,idsocial));
+    }
+
+    @Transactional
+    public Users findByIdsocial(String id){
+        return userRepository.findByIdsocial(id);
+    }
 }

@@ -17,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Users {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String phonenumber;
@@ -28,6 +29,7 @@ public class Users {
     private String hobby;
     private String gender;
     private String image;
+    private String idsocial;
     @OneToOne
     @JoinColumn(name = "accountid")
     private Account account;
@@ -53,5 +55,16 @@ public class Users {
         this.skillUsersList = skillUsersList;
         this.linkUsersList = linkUsersList;
         this.requestRecruitList = requestRecruitList;
+    }
+
+    public Users(String name, String image) {
+        this.name = name;
+        this.image = image;
+    }
+
+    public Users(String name, String image, String idsocial) {
+        this.name = name;
+        this.image = image;
+        this.idsocial = idsocial;
     }
 }

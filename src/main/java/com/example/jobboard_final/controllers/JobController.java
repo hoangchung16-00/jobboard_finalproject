@@ -22,7 +22,6 @@ public class JobController extends BaseController{
         model.addAttribute("jobs",jobServices.getJobs(pageable));
         model.addAttribute("totalPage",(jobServices.getTotalJob()+PAGE_SIZE-1)/PAGE_SIZE);
         model.addAttribute("currentPage",page);
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return "home";
     }
     @GetMapping("/jobdetail")

@@ -16,6 +16,7 @@ import java.awt.*;
 @NoArgsConstructor
 public class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
@@ -33,5 +34,12 @@ public class Account {
         this.accountrole = accountrole;
         this.user = user;
         this.company = company;
+    }
+
+    public Account(String username, String password, AccountRole accountrole, Users user) {
+        this.username = username;
+        this.password = password;
+        this.accountrole = accountrole;
+        this.user = user;
     }
 }

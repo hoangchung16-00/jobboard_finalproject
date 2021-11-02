@@ -11,6 +11,7 @@
                 <button type="submit" class="btn btn-primary">Login</button>
                 <p>Have't Any Account <a href="/register">Create An Account</a></p>
             </form:form>
+            <a href="https://www.facebook.com/dialog/oauth?client_id=309386574033218&redirect_uri=https://localhost:8443/signin/facebook">Login Facebook</a>
         </div>
     </div>
 </section>

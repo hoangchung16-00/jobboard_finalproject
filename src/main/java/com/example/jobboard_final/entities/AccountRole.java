@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AccountRole {
     @Id
-    private int id;
+    private Long id;
     private String name;
     @OneToMany(mappedBy = "accountrole",fetch = FetchType.LAZY)
     private List<Account> accountlist;

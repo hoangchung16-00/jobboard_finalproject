@@ -1,6 +1,8 @@
 package com.example.jobboard_final.configs;
 
+
 import com.example.jobboard_final.services.MyUserDetailService;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,9 +15,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Bean
     public UserDetailsService userDetailsService(){
         return new MyUserDetailService();
@@ -48,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/login","/signin/**","/signup/**").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/apply").hasAnyAuthority("USER")
                 .antMatchers("/profile").hasAnyAuthority("USER","ADMIN","COMPANY")
@@ -65,4 +69,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
     }
+
 }

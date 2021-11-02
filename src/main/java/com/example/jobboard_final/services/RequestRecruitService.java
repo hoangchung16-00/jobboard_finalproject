@@ -19,6 +19,10 @@ public class RequestRecruitService {
         return requestRecruitRepository.existsByUserAndJob(userId,jobId);
     }
     @Transactional
+    public boolean existByUserAndJob(String userId,Long jobId){
+        return requestRecruitRepository.existsByUserAndJob(userId,jobId);
+    }
+    @Transactional
     public boolean apply(Job job , Users users, Status status){
         requestRecruitRepository.save(new RequestRecruit(job,users,status));
         if(requestRecruitRepository.existsByUserAndJob(users.getId(),job.getId())){

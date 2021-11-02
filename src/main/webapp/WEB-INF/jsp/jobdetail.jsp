@@ -12,11 +12,11 @@
                             <button onclick="apply(${job.id},${isLogin});" id="applyjob" type="button" class="btn btn-primary">
                                 Apply
                             </button>
-                            <a><h2>${job.company.name}<span>${job.name} (${job.jobStatus.name})</span></h2></a>
+                            <h2>${job.company.name}<span>${job.name} (${job.jobStatus.name})</span></h2>
                             <p>Now Hiring(${job.number})</p>
                             <ul class="information">
                                 <li><span>Address:</span>${job.address}</li>
-                                <li><span>Website:</span>${job.company.website}</li>
+                                <li><span>Website:</span><a href="${job.company.website}" target="_blank">${job.company.website}</a></li>
                                 <li><span>Employee:</span>${job.company.employee} employer</li>
                                 <li><span>Mail:</span>${job.company.email}</li>
                                 <li><span>From:</span>${job.company.foundationyear}</li>

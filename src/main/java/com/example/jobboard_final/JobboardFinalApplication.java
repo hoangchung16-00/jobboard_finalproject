@@ -10,9 +10,8 @@ public class JobboardFinalApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(JobboardFinalApplication.class, args);
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encodedPassword = encoder.encode("user");
-		System.out.printf(encodedPassword);
+
+
 	}
 
 }

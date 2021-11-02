@@ -12,7 +12,9 @@ public interface UserRepository extends JpaRepository<Users,Long> {
     @Query("select count(u) from Users u")
     int getTotalUser();
     boolean existsById(Long id);
+    boolean existsByIdsocial(String id);
     Users findUsersById(Long id);
     @Query("select u from Users u")
     List<Users> getUsers();
+    Users findByIdsocial(String id);
 }
