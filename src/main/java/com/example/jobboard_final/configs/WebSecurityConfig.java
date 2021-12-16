@@ -24,14 +24,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService(){
         return new MyUserDetailService();
     }
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
         return new MySimpleUrlAuthenticationSuccessHandler();
     }
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -39,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
@@ -51,23 +55,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/login","/signin/**","/signup/**").permitAll()
+                .antMatchers("/login","/signin/**","/signup/**","/").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/apply").hasAnyAuthority("USER")
-                .antMatchers("/profile").hasAnyAuthority("USER","ADMIN","COMPANY")
+                .antMatchers("/apply","/editprofile","/addSkill").hasAnyAuthority("USER")
+                .antMatchers("/profile/**").hasAnyAuthority("USER","ADMIN","COMPANY")
+                .antMatchers("/approval/**","/createJob","/editCompanyInfor").hasAnyAuthority("COMPANY")
                 .and().exceptionHandling().accessDeniedPage("/404")
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .successHandler(myAuthenticationSuccessHandler())
+                .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
                 .permitAll();
-
     }
-
 }

@@ -11,8 +11,8 @@ import java.util.Collection;
 
 public class MyUserDetails implements UserDetails {
     private Account account;
-    @Autowired
-    private AccountService accountService;
+
+
     public MyUserDetails(Account account) {
         this.account = account;
     }
@@ -57,7 +57,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return account.isEnable();
     }
 
     public Account getUser() {

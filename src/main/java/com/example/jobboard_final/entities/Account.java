@@ -20,6 +20,8 @@ public class Account {
     private Long id;
     private String username;
     private String password;
+    private boolean enable;
+    private String verificationcode;
     @ManyToOne
     @JoinColumn(name = "accountroleid")
     private AccountRole accountrole;
@@ -39,6 +41,13 @@ public class Account {
     public Account(String username, String password, AccountRole accountrole, Users user) {
         this.username = username;
         this.password = password;
+        this.accountrole = accountrole;
+        this.user = user;
+    }
+
+    public Account(String username, boolean enable, AccountRole accountrole, Users user) {
+        this.username = username;
+        this.enable = enable;
         this.accountrole = accountrole;
         this.user = user;
     }

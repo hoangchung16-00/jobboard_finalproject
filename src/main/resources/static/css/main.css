@@ -687,28 +687,28 @@ outline:none;
 .company-brands label:focus{
 outline:none;
 }
-.checkbox-custom + .part-time.checkbox-custom-label:before, .radio-custom + .part-time.radio-custom-label:before {
-border:2px solid #0080ff;
+.checkbox-custom + .Parttime.checkbox-custom-label:before, .radio-custom + .Parttime.radio-custom-label:before {
+border:2px solid #ff8f3e;
 }
-.checkbox-custom:checked + .part-time.checkbox-custom-label:before {
-background: #0080ff;
+.checkbox-custom:checked + .Parttime.checkbox-custom-label:before {
+background: #ff8f3e;
 }
-.checkbox-custom + .full-time.checkbox-custom-label:before, .radio-custom + .full-time.radio-custom-label:before {
+.checkbox-custom + .Fulltime.checkbox-custom-label:before, .radio-custom + .Fulltime.radio-custom-label:before {
 border:2px solid #40af37;
 }
-.checkbox-custom:checked + .full-time.checkbox-custom-label:before {
+.checkbox-custom:checked + .Fulltime.checkbox-custom-label:before {
 background: #40af37;
 }
-.checkbox-custom + .freelancing.checkbox-custom-label:before, .radio-custom + .freelancing.radio-custom-label:before {
+.checkbox-custom + .Freelance.checkbox-custom-label:before, .radio-custom + .Freelance.radio-custom-label:before {
 border:2px solid #0080ff;
 }
-.checkbox-custom:checked + .freelancing.checkbox-custom-label:before {
+.checkbox-custom:checked + .Freelance.checkbox-custom-label:before {
 background: #0080ff;
 }
-.checkbox-custom + .internship.checkbox-custom-label:before, .radio-custom + .internship.radio-custom-label:before {
+.checkbox-custom + .Internship.checkbox-custom-label:before, .radio-custom + .Internship.radio-custom-label:before {
 border:2px solid #ef183c;
 }
-.checkbox-custom:checked + .internship.checkbox-custom-label:before {
+.checkbox-custom:checked + .Internship.checkbox-custom-label:before {
 background: #ef183c;
 }
 /*-----------------------counter Section start-------------------------*/
@@ -1130,6 +1130,75 @@ width:20%;
     height: 60px;
 	padding: 0 20px;
 }
+.danger {
+    color: #b80303;
+    align-self: flex-start;
+}
+div a:hover{
+    text-decoration: none ;
+}
+    .btn-facebook {
+        color: #fff;
+        background-color: #3b5998;
+        border-color: #3b5998;
+    }
+    .btn-google {
+        color: #fff;
+        background-color: #DB4437;
+        border-color: #DB4437;
+
+    }
+
+    .btn-social {
+        border-radius: 0px;
+        position: relative;
+        padding-left: 45px;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .btn-social:hover {
+        color: #eee;
+    }
+
+    .btn-social :first-child {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        padding: 7px;
+        font-size: 1.6em;
+        text-align: center;
+        border-right: 1px solid rgba(0,0,0,0.2);
+    }
+}
+.form-search {
+    width: 89.5%;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    height: 45px;
+    margin-bottom: 10px;
+    box-shadow: none;
+    font-size: 14px;
+}
+.form-button {
+    width: 10%;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    height: 45px;
+    margin-bottom: 10px;
+    box-shadow: none;
+    font-size: 14px;
+    color: #fff ;
+    background-color: #da0833;
 }
 
 
+.form-search:focus {
+    outline: none !important;
+    border:1px solid #0275d8;
+    box-shadow: #1c64f2;
+}

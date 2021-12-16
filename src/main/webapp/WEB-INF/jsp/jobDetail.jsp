@@ -9,9 +9,12 @@
                     </div>
                     <div class="col-md-9 col-sm-9">
                         <div class="profile-content">
-                            <button onclick="apply(${job.id},${isLogin});" id="applyjob" type="button" class="btn btn-primary">
-                                Apply
-                            </button>
+                            <c:if test="${account.accountrole.name=='User'}">
+                                <button onclick="apply(${job.id},${isLogin});" id="applyjob" type="button" class="btn btn-primary">
+                                    Apply
+                                </button>
+                            </c:if>
+
                             <h2>${job.company.name}<span>${job.name} (${job.jobStatus.name})</span></h2>
                             <p>Now Hiring(${job.number})</p>
                             <ul class="information">

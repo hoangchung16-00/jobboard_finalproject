@@ -2,8 +2,12 @@ package com.example.jobboard_final.controllers;
 
 
 import com.example.jobboard_final.configs.RestFB;
+import com.example.jobboard_final.entities.Account;
 import com.example.jobboard_final.forms.LoginForm;
 
+import com.example.jobboard_final.forms.RegisterForm;
+import com.example.jobboard_final.services.AccountRoleService;
+import com.example.jobboard_final.services.AccountService;
 import com.example.jobboard_final.services.UserService;
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +20,15 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 
 @Controller
@@ -29,13 +36,18 @@ public class DefaultController extends BaseController{
     @Autowired
     private UserService userService;
     @Autowired
+    private AccountService accountService;
+    @Autowired
+    private AccountRoleService accountRoleService;
+    @Autowired
     private RestFB restFb;
     @GetMapping("/404")
     public String getErrorNotFound(){
         return "404";
     }
     @GetMapping("/login")
-    public String getLogin(Model model){
+    public String getLogin(Model model,@RequestParam(value = "error",defaultValue = "false") boolean error){
+
         model.addAttribute("loginForm",new LoginForm());
         return "login";
     }
@@ -48,8 +60,26 @@ public class DefaultController extends BaseController{
         return "redirect:/login";
     }
     @GetMapping("/register")
-    public String getRegister(){
+    public String getRegister(Model model){
+        model.addAttribute("registerForm",new RegisterForm());
         return "register";
+    }
+    @PostMapping("/register")
+    public String postRegister(@Valid @ModelAttribute("registerForm") RegisterForm registerForm, BindingResult bindingResult, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
+        if(bindingResult.hasErrors()){
+            return "register";
+        }
+        if(!registerForm.getPassword().equals(registerForm.getRepassword())){
+            bindingResult.rejectValue("repassword","error.user","Password not match");
+            return "register";
+        }
+        if(userService.existsByEmail(registerForm.getEmail())){
+            bindingResult.rejectValue("email","error.user","Email has been register");
+            return "register";
+        }
+        Account account = accountService.registerUser(registerForm,accountRoleService.getById(1L));
+        userService.register(registerForm,account,getSiteURL(request));
+        return "redirect:/";
     }
 
 
@@ -72,6 +102,24 @@ public class DefaultController extends BaseController{
             userService.createUser(user.getName(),"user.png",user.getId());
         }
         return "redirect:/";
+    }
+    @GetMapping("/verify")
+    public String getVerify(@RequestParam("code") String code){
+        if(code==null){
+            return "redirect:/404";
+        }
+        if(accountService.existsByVerificationcode(code)){
+            Account account = accountService.findByVerificationcode(code);
+            accountService.verify(account);
+            return "redirect:/";
+        }
+
+        return "redirect:/404";
+    }
+
+    private String getSiteURL(HttpServletRequest request) {
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
     }
 
 

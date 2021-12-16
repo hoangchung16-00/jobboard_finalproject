@@ -16,13 +16,13 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item <c:if test="${currentPage==1}">disabled</c:if>" >
-                        <a class="page-link" href="/home?page=${currentPage-1}" tabindex="-1">Previous</a>
+                        <a class="page-link" href="?page=${currentPage-1}" tabindex="-1">Previous</a>
                     </li>
                     <c:forEach begin="1" end="${totalPage}" varStatus="index">
-                        <li class="page-item <c:if test="${currentPage==index.index}">active</c:if>"><a class="page-link" href="/home?page=${index.index}">${index.index}</a></li>
+                        <li class="page-item <c:if test="${currentPage==index.index}">active </c:if>"><a class="page-link" href="?page=${index.index}">${index.index}</a></li>
                     </c:forEach>
                     <li class="page-item <c:if test="${currentPage==(totalPage)}">disabled</c:if>" >
-                        <a class="page-link" href="/home?page=${currentPage+1}">Next</a>
+                        <a class="page-link" href="?page=${currentPage+1}">Next</a>
                     </li>
                 </ul>
             </nav>

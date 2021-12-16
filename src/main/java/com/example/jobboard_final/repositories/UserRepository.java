@@ -17,4 +17,5 @@ public interface UserRepository extends JpaRepository<Users,Long> {
     @Query("select u from Users u")
     List<Users> getUsers();
     Users findByIdsocial(String id);
+    boolean existsByEmail(String email);
 }

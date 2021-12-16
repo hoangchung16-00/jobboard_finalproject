@@ -2,6 +2,7 @@ package com.example.jobboard_final.controllers;
 
 import com.example.jobboard_final.entities.Job;
 import com.example.jobboard_final.entities.MyUserDetails;
+import com.example.jobboard_final.entities.RequestRecruit;
 import com.example.jobboard_final.entities.Status;
 import com.example.jobboard_final.services.JobServices;
 import com.example.jobboard_final.services.RequestRecruitService;
@@ -20,12 +21,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AjaxController {
     @Autowired
     private RequestRecruitService requestRecruitService;
+
     @Autowired
     private JobServices jobServices;
+
     @Autowired
     private StatusService statusService;
+
     @Autowired
     private UserService userService;
+
     @ResponseBody
     @GetMapping("/apply")
     public String getApply(@RequestParam("id") Long id){
@@ -62,4 +67,29 @@ public class AjaxController {
         String message = "Something went wrong";
         return gson.toJson(message);
     }
+
+    @ResponseBody
+    @GetMapping("/deny")
+    public String getDeny(@RequestParam("id") Long id){
+        if(!requestRecruitService.existsById(id)){
+            return "redirect:/404";
+        }
+        requestRecruitService.setRequestStatus(id,statusService.getById(2L));
+        String message = "This request has been denied";
+        Gson gson = new Gson();
+        return gson.toJson(message);
+    }
+
+    @ResponseBody
+    @GetMapping("/accept")
+    public String getAccept(@RequestParam("id") Long id){
+        if(!requestRecruitService.existsById(id)){
+            return "redirect:/404";
+        }
+        requestRecruitService.setRequestStatus(id,statusService.getById(1L));
+        String message = "This request has been accept";
+        Gson gson = new Gson();
+        return gson.toJson(message);
+    }
+
 }

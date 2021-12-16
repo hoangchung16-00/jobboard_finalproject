@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "requestrecruit")
@@ -26,10 +27,11 @@ public class RequestRecruit {
     @ManyToOne
     @JoinColumn(name = "statusid")
     private Status status;
-
-    public RequestRecruit(Job job, Users user, Status status) {
+    private Date applytime;
+    public RequestRecruit(Job job, Users user, Status status,Date applytime) {
         this.job = job;
         this.user = user;
         this.status = status;
+        this.applytime = applytime;
     }
 }

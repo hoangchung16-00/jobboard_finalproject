@@ -11,4 +11,7 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
 
     Account findByUsername(String username);
     boolean existsByUsername(String username);
+    boolean existsByVerificationcode(String verficationcode);
+    Account findByVerificationcode(String verificationcode);
+
 }

@@ -15,6 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class SkillJob {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     @ManyToOne
@@ -25,7 +26,7 @@ public class SkillJob {
     private Job job;
 
     public SkillJob(String name, LevelType levelType, Job job) {
-        name = name;
+        this.name = name;
         this.levelType = levelType;
         this.job = job;
     }

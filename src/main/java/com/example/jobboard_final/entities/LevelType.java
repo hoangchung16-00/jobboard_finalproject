@@ -15,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 public class LevelType {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     @OneToMany(mappedBy = "levelType",fetch = FetchType.LAZY)
     private List<SkillJob> skillJobList;

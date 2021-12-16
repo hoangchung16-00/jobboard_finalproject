@@ -10,9 +10,13 @@
                     </div>
                     <div class="col-md-9 col-sm-9">
                         <div class="profile-content">
+                            <c:if test="${account.user.id == user.id}">
+                                <a href="/editprofile" type="button" class="btn btn-primary">
+                                    Edit Profile
+                                </a>
+                            </c:if>
                             <h2>${user.name}<span>${user.description}</span></h2>
                             <ul class="information">
-
                                 <li><span>Address:</span>${user.address}</li>
                                 <li><span>Phone:</span>${user.phonenumber}</li>
                                 <li><span>Mail:</span>${user.email}</li>

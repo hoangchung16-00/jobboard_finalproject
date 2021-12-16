@@ -16,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AccountRole {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @OneToMany(mappedBy = "accountrole",fetch = FetchType.LAZY)

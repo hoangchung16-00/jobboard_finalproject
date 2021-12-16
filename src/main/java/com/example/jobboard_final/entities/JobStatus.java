@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class JobStatus {
     @Id
-    private int id;
+    private Long id;
     private String name;
     @OneToMany(mappedBy = "jobStatus",fetch = FetchType.LAZY)
     private List<Job> jobList;

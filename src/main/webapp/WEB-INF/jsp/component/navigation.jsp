@@ -25,16 +25,14 @@
                     <ul class="dropdown-menu animated fadeOutUp" style="display: none; opacity: 1;">
                         <li class="active"><a href="browse-job.html">Browse Jobs</a></li>
                         <c:if test="${isLogin}">
+                            <li><a href="/logout">Logout</a></li>
                             <c:if test="${account.accountrole.name=='User'}">
-                                <li><a href="/profile?id=${account.user.id}">Profile</a></li>
+                                <li><a href="/profile/${account.user.id}">Profile</a></li>
                             </c:if>
                             <c:if test="${account.accountrole.name=='Company'}">
-                                <li><a href="/company?id=${account.company.id}">Company infor</a></li>
+                                <li><a href="/company/${account.company.id}">Company infor</a></li>
+                                <li><a href="/approval/All">Request Recruit</a></li>
                             </c:if>
-                        </c:if>
-                        <li><a href="resume.html">Resume Detail</a></li>
-                        <c:if test="${isLogin}">
-                            <li><a href="/logout">Logout</a></li>
                         </c:if>
                     </ul>
                 </li>
