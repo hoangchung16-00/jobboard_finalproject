@@ -1202,3 +1202,8 @@ div a:hover{
     border:1px solid #0275d8;
     box-shadow: #1c64f2;
 }
+
+.btn-title {
+    background-color: #fff;
+    border: none;
+}

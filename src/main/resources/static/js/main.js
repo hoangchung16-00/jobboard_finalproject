@@ -86,9 +86,9 @@ function accept(id) {
 function searchJob() {
   	const key =	$('#keyword').val();
   	if(key == ''){
-  		window.location.href = '/findjob/all';
+  		window.location.href = '/findJob/all';
 	} else {
-  		window.location.href = '/findjob/' + key;
+  		window.location.href = '/findJob/' + key;
 	}
 }
 
