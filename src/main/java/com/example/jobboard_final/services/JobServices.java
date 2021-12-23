@@ -19,6 +19,10 @@ public class JobServices {
 
     @Transactional
     public List<Job> getJobs(Pageable pageable){
+        List<Job> jobs = jobRepository.getJobs(pageable);
+        for (Job job: jobs) {
+            job.getSkillJobList().size();
+        }
         return jobRepository.getJobs(pageable);
     }
 
@@ -41,7 +45,11 @@ public class JobServices {
 
     @Transactional
     public List<Job> findJobByKeyword(String keyword,Pageable pageable){
-        return jobRepository.findJobByKeyword(keyword,pageable);
+        List<Job> jobs = jobRepository.findJobByKeyword(keyword,pageable);
+        for (Job job : jobs) {
+            job.getSkillJobList().size();
+        }
+        return jobs;
     }
 
     @Transactional

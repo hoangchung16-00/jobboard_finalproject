@@ -167,4 +167,10 @@ public class JobController extends BaseController{
         companyService.editCompany(company);
         return "redirect:/";
     }
+    @GetMapping("/company/{id}")
+    public String getCompany(Model model,@PathVariable("id") Long id){
+        Company company = companyService.getById(id);
+        model.addAttribute("company",company);
+        return "company";
+    }
 }

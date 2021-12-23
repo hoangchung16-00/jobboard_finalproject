@@ -20,9 +20,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 text-center">
-                <span class="display-1 d-block">404</span>
-                <div class="mb-4 lead">The page you are looking for was not found.</div>
-                <a href="/" class="btn btn-link">Back to Home</a>
+                <span class="display-1 d-block">Error 404</span>
+                <div class="mb-4 lead">Có lỗi xảy ra!Trang bạn tìm kiếm không còn tồn tại!</div>
+                <a href="/" class="btn btn-link">Quay lại trang chủ</a>
             </div>
         </div>
     </div>

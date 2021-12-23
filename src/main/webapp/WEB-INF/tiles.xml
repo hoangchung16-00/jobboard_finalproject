@@ -49,6 +49,15 @@
     <definition name="addSkill" extends="mainLayout.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/addSkill.jsp"/>
     </definition>
+    <definition name="company" extends="mainLayout.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/companyInfor.jsp"/>
+    </definition>
+    <definition name="test" extends="mainLayout.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/test.jsp"/>
+    </definition>
+    <definition name="applyList" extends="mainLayout.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/userApplyList.jsp"/>
+    </definition>
     <definition name="adminLayout.definition"
                 template="/WEB-INF/jsp/layouts/adminLayout.jsp">
         <put-attribute name="sidebar" value="/WEB-INF/jsp/component/admin/sidebar.jsp" />

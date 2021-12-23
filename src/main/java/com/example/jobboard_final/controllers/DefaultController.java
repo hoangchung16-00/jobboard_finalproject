@@ -117,6 +117,11 @@ public class DefaultController extends BaseController{
         return "redirect:/404";
     }
 
+    @GetMapping("/test")
+    public String getTest(){
+        return "test";
+    }
+
     private String getSiteURL(HttpServletRequest request) {
         String siteURL = request.getRequestURL().toString();
         return siteURL.replace(request.getServletPath(), "");

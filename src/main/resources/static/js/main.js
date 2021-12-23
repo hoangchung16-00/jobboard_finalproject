@@ -23,7 +23,15 @@ function apply(id,isLogin) {
 			},
 			success: function (result) {
 				var result = JSON.parse(result);
-				alert(result)
+				if(result=="0") {
+					alert("Có lỗi xảy ra! Vui lòng thử lại sau!");
+				}
+				if(result=="1") {
+					alert("Ứng tuyển thành công! Vui lòng đợi phản hồi từ nhà tuyển dụng");
+				}
+				if(result=="2") {
+					alert("Bạn đã ứng tuyển công việc này! Vui lòng đợi phản hồi từ nhà tuyển dụng");
+				}
 			},
 			error: function (e) {
 				alert('error')
@@ -42,14 +50,14 @@ function requestDeny(id) {
 			id: id
 		},
 		success: function (result) {
-			$('#message').text(result);
+				$('#message').text(result);
 		},
 		error: function (e) {
 			alert('error')
 			console.log("ERROR: ", e);
 		}
 	});
-	$('#status'+id).text("Denied");
+	$('#status'+id).text("Từ chối");
 }
 
 function requestAccept(id) {
@@ -68,17 +76,17 @@ function requestAccept(id) {
 			console.log("ERROR: ", e);
 		}
 	});
-	$('#status'+id).text("Accept");
+	$('#status'+id).text("Đồng ý");
 }
 
 function deny(id) {
-	$('#message').text('Deny this request');
+	$('#message').text('Từ chối hồ sơ ứng viên');
 	$('#approveButton').on("click",() => requestDeny(id));
 	$('#denyModal').modal('show');
 }
 
 function accept(id) {
-	$('#message').text('Accept this request');
+	$('#message').text('Đồng ý hồ sơ ứng viên ');
 	$('#approveButton').on("click",() => requestAccept(id));
 	$('#denyModal').modal('show');
 }
@@ -110,4 +118,23 @@ class SkillInput {
 	}
 }
 
+//drop
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+	document.getElementById("myDropdown").classList.toggle("show");
+}
 
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+	if (!event.target.matches('.dropbtn')) {
+		var dropdowns = document.getElementsByClassName("customdrop-content");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+			if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+			}
+		}
+	}
+}

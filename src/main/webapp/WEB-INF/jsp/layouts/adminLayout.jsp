@@ -20,8 +20,8 @@
 <body>
 <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
 
-    <!--      sidebar-->
-    <tiles:insertAttribute name="sidebar"/>
+<%--    <!--      sidebar-->
+    <tiles:insertAttribute name="sidebar"/>--%>
     <div class="flex flex-col flex-1 w-full">
         <!--        navigation-->
         <tiles:insertAttribute name="navigation"/>

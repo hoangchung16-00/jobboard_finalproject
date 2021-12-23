@@ -1,5 +1,7 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib  prefix="tag-dropdown" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib  prefix="tag-date" tagdir="/WEB-INF/tags"%>
 <div class="container">
 
     <div style="height:1000px; width:100%; clear:both;">
@@ -9,12 +11,12 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Job</th>
-                    <th scope="col"><button class="btn-title">Apply time  <i class="fa fa-angle-down" style="font-size:24px"></i></button> </th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Họ tên</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Công việc ứng tuyển</th>
+                    <th scope="col"><button class="btn-title">Thời gian ứng tuyển<i class="fa fa-angle-down" style="font-size:24px"></i></button> </th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,12 +26,12 @@
                     <td>${request.user.name}</td>
                     <td>${request.user.phonenumber}</td>
                     <td>${request.job.name}</td>
-                    <td>${request.applytime}</td>
+                    <td><tag-date:date date="${request.applytime}"/></td>
                     <td id="status${request.id}">${request.status.name}</td>
                     <td>
-                        <a href="/profile/${request.user.id}" type="button" class="btn btn-info">View Profile</a>
-                        <a href="#" type="button" class="btn btn-success <c:if test="${request.status.id == 1 || request.status.id == 2}">disabled</c:if>" onclick="accept(${request.id})">Accept</a>
-                        <a href="#" type="button" class="btn btn-danger <c:if test="${request.status.id == 2 || request.status.id == 1}">disabled</c:if>"  onclick="deny(${request.id})">Deny</a>
+                        <a href="/profile/${request.user.id}" type="button" class="btn btn-info">Xem hồ sơ</a>
+                        <a href="#" type="button" class="btn btn-success <c:if test="${request.status.id == 1 || request.status.id == 2}">disabled</c:if>" onclick="accept(${request.id})">Đồng ý</a>
+                        <a href="#" type="button" class="btn btn-danger <c:if test="${request.status.id == 2 || request.status.id == 1}">disabled</c:if>"  onclick="deny(${request.id})">Từ chối</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -60,7 +62,7 @@
         <div class="modal-content">
             <div class="modal-header">
 
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h4 class="modal-title" id="exampleModalLabel">Duyệt hồ sơ ứng viên</h4>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -70,8 +72,8 @@
                 <p id="message"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="approveButton" type="button" class="btn btn-success" >Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button id="approveButton" type="button" class="btn btn-success" >Đồng ý</button>
             </div>
         </div>
     </div>

@@ -69,4 +69,9 @@ public class RequestRecruitService {
         request.setStatus(status);
         requestRecruitRepository.save(request);
     }
+
+    @Transactional
+    public List<RequestRecruit> findByUser(Users user){
+        return requestRecruitRepository.findByUser(user);
+    }
 }

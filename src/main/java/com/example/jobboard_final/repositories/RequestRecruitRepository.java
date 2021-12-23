@@ -30,4 +30,7 @@ public interface RequestRecruitRepository extends JpaRepository<RequestRecruit,L
     boolean existsById(Long id);
 
     RequestRecruit getById(Long id);
+
+    @Query("select rp from RequestRecruit rp where rp.user = ?1")
+    List<RequestRecruit> findByUser(Users user);
 }

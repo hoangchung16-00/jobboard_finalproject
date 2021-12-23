@@ -15,5 +15,6 @@ public interface CompanyRepository extends JpaRepository<Company,Long> {
     @Query("select count(c) from Company c")
     int getTotalCompany();
 
+    @Query("select c from Company c where c.id=?1")
     Company getById(Long id);
 }

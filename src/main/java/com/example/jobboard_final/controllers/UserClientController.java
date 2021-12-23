@@ -2,6 +2,7 @@ package com.example.jobboard_final.controllers;
 
 import com.example.jobboard_final.entities.*;
 import com.example.jobboard_final.forms.EditProfileForm;
+import com.example.jobboard_final.services.RequestRecruitService;
 import com.example.jobboard_final.services.SkillUsersService;
 import com.example.jobboard_final.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class UserClientController extends BaseController{
 
     @Autowired
     private SkillUsersService skillUsersService;
+
+    @Autowired
+    private RequestRecruitService requestRecruitService;
 
     @GetMapping("/profile/{id}")
     public String getProfile(Model model, @PathVariable("id") Long id){
@@ -107,5 +111,19 @@ public class UserClientController extends BaseController{
         }
         skillUsersService.removeSkill(skillUsersService.getById(id));
         return "redirect:/editprofile";
+    }
+    @GetMapping("/applyList")
+    public String getApplyList(Model model){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users user = new Users();
+        if(principal instanceof MyUserDetails){
+            user = ((MyUserDetails) principal).getUser().getUser();
+        } else {
+            if(principal instanceof UserDetails) {
+                user = userService.findByIdsocial(((UserDetails) principal).getUsername());
+            }
+        }
+        model.addAttribute("applyList",requestRecruitService.findByUser(user));
+        return "applyList";
     }
 }

@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login","/signin/**","/signup/**","/").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/apply","/editprofile","/addSkill").hasAnyAuthority("USER")
+                .antMatchers("/apply","/editprofile","/addSkill","/applyList").hasAnyAuthority("USER")
                 .antMatchers("/profile/**").hasAnyAuthority("USER","ADMIN","COMPANY")
                 .antMatchers("/approval/**","/createJob","/editCompanyInfor").hasAnyAuthority("COMPANY")
                 .and().exceptionHandling().accessDeniedPage("/404")

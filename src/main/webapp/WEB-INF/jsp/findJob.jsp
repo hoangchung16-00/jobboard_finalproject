@@ -1,18 +1,21 @@
 <%@ taglib  prefix="tag-job" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
+<%@ page contentType="text/html; charset=UTF-8" %>
 <section class="jobs">
 
     <div class="container">
+        <div class="row heading">
+            <h2>Tìm kiếm việc làm IT phù hợp</h2>
+            <p>Hàng ngàn công việc IT đang chờ đợi bạn, ứng tuyển ngay hôm nay</p>
+        </div>
         <div class="row top-pad">
             <div class="col">
                 <div class="row">
-                    <input type="text" id="keyword" class="form-search" placeholder="Search..."/>
+                    <input type="text" id="keyword" class="form-search" placeholder="Tìm kiếm..."/>
                     <button type="submit" class="form-button" onclick="searchJob(${currentPage})">Search</button>
                 </div>
             </div>
-            <div class="filter">
+            <%--<div class="filter">
                 <div class="col-md-2 col-sm-3">
                     <p>Find By:</p>
                 </div>
@@ -26,7 +29,7 @@
                         </c:forEach>
                     </ul>
                 </div>
-            </div>
+            </div>--%>
         </div>
         <div class="companies">
             <c:forEach items="${jobs}" var="job">

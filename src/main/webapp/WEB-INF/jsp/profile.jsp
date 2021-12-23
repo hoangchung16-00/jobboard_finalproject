@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib  prefix="tag-date" tagdir="/WEB-INF/tags"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <section class="profile-detail">
     <div class="container">
         <div class="col-md-12">
@@ -12,16 +13,16 @@
                         <div class="profile-content">
                             <c:if test="${account.user.id == user.id}">
                                 <a href="/editprofile" type="button" class="btn btn-primary">
-                                    Edit Profile
+                                    Chỉnh sửa hồ sơ
                                 </a>
                             </c:if>
                             <h2>${user.name}<span>${user.description}</span></h2>
                             <ul class="information">
-                                <li><span>Address:</span>${user.address}</li>
-                                <li><span>Phone:</span>${user.phonenumber}</li>
+                                <li><span>Địa chỉ:</span>${user.address}</li>
+                                <li><span>Số điện thoại:</span>${user.phonenumber}</li>
                                 <li><span>Mail:</span>${user.email}</li>
-                                <li><span>Gender:</span>${user.gender}</li>
-                                <li><span>Date of birth:</span><tag-date:date date="${user.dob}"></tag-date:date></li>
+                                <li><span>Giới tính:</span>${user.gender}</li>
+                                <li><span>Ngày sinh:</span><tag-date:date date="${user.dob}"></tag-date:date></li>
                             </ul>
                         </div>
                     </div>
@@ -42,7 +43,7 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-leaf fa-fw"></i> Technical skill:
+                            <i class="fa fa-leaf fa-fw"></i> Kỹ năng:
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -57,7 +58,7 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-coffee fa-fw"></i> Hobby:
+                            <i class="fa fa-coffee fa-fw"></i> Sở thích:
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -67,7 +68,7 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-graduation-cap fa-fw"></i> Education:
+                            <i class="fa fa-graduation-cap fa-fw"></i> Học vấn:
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

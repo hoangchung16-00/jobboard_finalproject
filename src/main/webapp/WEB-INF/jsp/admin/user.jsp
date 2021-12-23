@@ -1,8 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib  prefix="tag-date" tagdir="/WEB-INF/tags"%>
-<!-- With avatar -->
 <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">Company List</h4>
-<!-- Divs are used just to display the examples. Use only the button. -->
+<!-!-- Divs are used just to display the examples. Use only the button. -->
 
 <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
     <div class="w-full overflow-x-auto">
@@ -15,7 +14,6 @@
                 <th class="px-4 py-3">Email</th>
                 <th class="px-4 py-3">Phone</th>
                 <th class="px-4 py-3">Gender</th>
-
             </tr>
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">

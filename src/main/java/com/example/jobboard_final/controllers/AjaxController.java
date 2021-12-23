@@ -42,29 +42,29 @@ public class AjaxController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal instanceof MyUserDetails) {
             if (requestRecruitService.existByUserAndJob(((MyUserDetails) principal).getUser().getUser().getId(), id)) {
-                String message = "You have already apply,please wait to respone";
+                String message = "2";
                 return gson.toJson(message);
             }
             Job job = jobServices.getJobById(id);
             Status status = statusService.getById(3L);
             if (requestRecruitService.apply(job, ((MyUserDetails) principal).getUser().getUser(), status)) {
-                String message = "Apply Success";
+                String message = "1";
                 return gson.toJson(message);
             }
         }
         if(principal instanceof User) {
             if (requestRecruitService.existByUserAndJob(((User) principal).getUsername(), id)) {
-                String message = "You have already apply,please wait to respone";
+                String message = "2";
                 return gson.toJson(message);
             }
             Job job = jobServices.getJobById(id);
             Status status = statusService.getById(3L);
             if (requestRecruitService.apply(job,userService.findByIdsocial(((User) principal).getUsername()) , status)) {
-                String message = "Apply Success";
+                String message = "1";
                 return gson.toJson(message);
             }
         }
-        String message = "Something went wrong";
+        String message = "0";
         return gson.toJson(message);
     }
 
