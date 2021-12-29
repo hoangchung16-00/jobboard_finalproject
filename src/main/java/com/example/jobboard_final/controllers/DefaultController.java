@@ -103,6 +103,7 @@ public class DefaultController extends BaseController{
         }
         return "redirect:/";
     }
+
     @GetMapping("/verify")
     public String getVerify(@RequestParam("code") String code){
         if(code==null){

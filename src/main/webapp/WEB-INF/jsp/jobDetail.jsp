@@ -16,7 +16,7 @@
                                 </button>
                             </c:if>
                             <c:if test="${account.accountrole.name!='User'}">
-                                <p class="danger">Vui lòng đăng nhập để ứng tuyển</p>
+                                <p class="danger">Vui lòng đăng nhập với tư cách ứng viên để ứng tuyển</p>
                             </c:if>
                             <h2>${job.company.name}<span>${job.name} (${job.jobStatus.name})</span></h2>
                             <p>Số lượng tuyển dụng: (${job.number})</p>

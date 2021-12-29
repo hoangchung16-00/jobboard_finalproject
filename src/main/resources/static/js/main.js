@@ -57,7 +57,7 @@ function requestDeny(id) {
 			console.log("ERROR: ", e);
 		}
 	});
-	$('#status'+id).text("Từ chối");
+	location.reload();
 }
 
 function requestAccept(id) {
@@ -76,7 +76,7 @@ function requestAccept(id) {
 			console.log("ERROR: ", e);
 		}
 	});
-	$('#status'+id).text("Đồng ý");
+	location.reload();
 }
 
 function deny(id) {

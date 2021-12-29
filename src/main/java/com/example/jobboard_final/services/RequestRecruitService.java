@@ -71,7 +71,12 @@ public class RequestRecruitService {
     }
 
     @Transactional
-    public List<RequestRecruit> findByUser(Users user){
-        return requestRecruitRepository.findByUser(user);
+    public List<RequestRecruit> findByUser(Users user,Pageable pageable){
+        return requestRecruitRepository.findByUser(user,pageable);
+    }
+
+    @Transactional
+    public int getTotalRequestByUser(Users users){
+        return requestRecruitRepository.getTotalRequestByUser(users);
     }
 }

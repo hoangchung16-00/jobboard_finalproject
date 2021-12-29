@@ -6,6 +6,8 @@ import com.example.jobboard_final.services.RequestRecruitService;
 import com.example.jobboard_final.services.SkillUsersService;
 import com.example.jobboard_final.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,10 +23,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
 public class UserClientController extends BaseController{
+    public static final int PAGE_SIZE = 10;
     @Autowired
     private UserService userService;
 
@@ -36,15 +40,28 @@ public class UserClientController extends BaseController{
 
     @GetMapping("/profile/{id}")
     public String getProfile(Model model, @PathVariable("id") Long id){
-        Users users = ((Account) model.getAttribute("account")).getUser();
-        if(!userService.existsById(id) || users.getId() != id){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal instanceof MyUserDetails){
+            if(((MyUserDetails) principal).getUser().getAccountrole().getName().equalsIgnoreCase("USER")){
+                if(((MyUserDetails) principal).getUser().getUser().getId()!=id){
+                    return "404";
+                }
+            }
+        } else {
+            if (principal instanceof UserDetails) {
+                if (userService.findByIdsocial(((UserDetails) principal).getUsername()).getId() != id) {
+                    return "404";
+                }
+            }
+        }
+        if(!userService.existsById(id)){
             return "404";
         }
         model.addAttribute("user",userService.findUsersById(id));
         return "profile";
     }
 
-    @GetMapping("/editprofile")
+    @GetMapping("/editProfile")
     public String getEditProfile(Model model){
         Users user = ((Account) model.getAttribute("account")).getUser();
         EditProfileForm editProfileForm = new EditProfileForm();
@@ -53,8 +70,8 @@ public class UserClientController extends BaseController{
         return "editProfile";
     }
 
-    @PostMapping("/editprofile")
-    public String postEditProfile(@RequestParam("imageUser") MultipartFile image, @Valid @ModelAttribute("user") EditProfileForm editProfileForm, BindingResult bindingResult, Model model) throws ParseException, IOException {
+    @PostMapping("/editProfile")
+    public String postEditProfile(@RequestParam("imageUser") MultipartFile image, @Valid @ModelAttribute("editProfileForm") EditProfileForm editProfileForm, BindingResult bindingResult, Model model) throws ParseException, IOException {
         if(!image.isEmpty()){
             String fileName =editProfileForm.getId().toString()+"user" + image.getOriginalFilename();
             String oldFileName = editProfileForm.getImage();
@@ -71,10 +88,13 @@ public class UserClientController extends BaseController{
                 Files.write(imagePath, image.getBytes());
             }
         }
-        if(bindingResult.hasErrors()){
-            return "/editprofile";
+        Date date =  new SimpleDateFormat("yyyy-MM-dd").parse(editProfileForm.getDob());
+        if(date.after(new Date()) || date.getYear() < 0){
+            bindingResult.rejectValue("dob","error.profile","Ngày sinh không hợp lệ");
         }
-
+        if(bindingResult.hasErrors()){
+            return "editProfile";
+        }
         userService.editUser(editProfileForm);
         skillUsersService.editListSkill(editProfileForm.getSkillIdList(),editProfileForm.getSkillNameList(),editProfileForm.getSkillExperienceList());
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -90,6 +110,9 @@ public class UserClientController extends BaseController{
 
     @PostMapping("/addSkill")
     public String postAddSkill(@Valid @ModelAttribute("skillUser") SkillUsers skillUsers, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "addSkill";
+        }
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users user = new Users();
         if(principal instanceof MyUserDetails){
@@ -101,7 +124,7 @@ public class UserClientController extends BaseController{
         }
         skillUsers.setUser(user);
         skillUsersService.addSkill(skillUsers);
-        return "redirect:/profile";
+        return "redirect:/profile/"+user.getId();
     }
 
     @GetMapping("/removeSkill/{id}")
@@ -110,10 +133,11 @@ public class UserClientController extends BaseController{
             return "redirect:/404";
         }
         skillUsersService.removeSkill(skillUsersService.getById(id));
-        return "redirect:/editprofile";
+        return "redirect:/editProfile";
     }
     @GetMapping("/applyList")
-    public String getApplyList(Model model){
+    public String getApplyList(Model model,@RequestParam(value = "page",defaultValue = "1") int page){
+        Pageable pageable = PageRequest.of(page-1,PAGE_SIZE);
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users user = new Users();
         if(principal instanceof MyUserDetails){
@@ -123,7 +147,9 @@ public class UserClientController extends BaseController{
                 user = userService.findByIdsocial(((UserDetails) principal).getUsername());
             }
         }
-        model.addAttribute("applyList",requestRecruitService.findByUser(user));
+        model.addAttribute("applyList",requestRecruitService.findByUser(user,pageable));
+        model.addAttribute("totalPage",(requestRecruitService.getTotalRequestByUser(user)+PAGE_SIZE-1)/PAGE_SIZE);
+        model.addAttribute("currentPage",page);
         return "applyList";
     }
 }

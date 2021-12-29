@@ -20,6 +20,15 @@
                          </ul>
                         </div>
                     </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-user fa-fw"></i> Giới thiệu về nhà tuyển dụng:
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <p>${company.description}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

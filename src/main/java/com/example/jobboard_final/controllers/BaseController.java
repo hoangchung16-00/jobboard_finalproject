@@ -13,12 +13,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.List;
 public class BaseController {
+
     @Autowired
     private UserService userService;
+
     @Autowired
     private AccountRoleService accountRoleService;
+
     @Autowired
     private AccountService accountService;
+
     @ModelAttribute("isLogin")
     public boolean getUsername(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -27,6 +31,7 @@ public class BaseController {
         }
         return false;
     }
+
     @ModelAttribute("account")
     public Account getUser(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

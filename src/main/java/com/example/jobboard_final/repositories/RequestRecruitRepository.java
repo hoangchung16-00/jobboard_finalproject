@@ -32,5 +32,8 @@ public interface RequestRecruitRepository extends JpaRepository<RequestRecruit,L
     RequestRecruit getById(Long id);
 
     @Query("select rp from RequestRecruit rp where rp.user = ?1")
-    List<RequestRecruit> findByUser(Users user);
+    List<RequestRecruit> findByUser(Users user,Pageable pageable);
+
+    @Query("select count(rp) from RequestRecruit rp where rp.user=?1")
+    int getTotalRequestByUser(Users user);
 }

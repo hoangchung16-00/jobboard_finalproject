@@ -28,13 +28,17 @@
 
 <div class="customdrop">
     <button onclick="myFunction()" class="btn btn-success dropbtn">
+
         <c:if test="${current != 'All'}">
             ${current}
         </c:if>
         <c:if test="${current == 'All'}">
             Tất cả
         </c:if>
+
+        <i class="fa fa-sort-desc" aria-hidden="true"></i>
     </button>
+
     <div id="myDropdown" class="customdrop-content">
         <c:forEach items="${list}" var="item">
             <c:if test="${item.name != current}">

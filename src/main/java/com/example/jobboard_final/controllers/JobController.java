@@ -118,8 +118,16 @@ public class JobController extends BaseController{
     }
 
     @PostMapping("/createJob")
-    public String postCreateJob(@Valid @ModelAttribute("job") JobForm job, BindingResult bindingResult) throws ParseException {
+    public String postCreateJob(@Valid @ModelAttribute("job") JobForm job, BindingResult bindingResult,Model model) throws ParseException {
+        if(job.getSkillNameList().get(0).equalsIgnoreCase("")){
+            bindingResult.rejectValue("skillNameList","error.job","Kỹ năng không được để trống");
+        }
+        if(job.getSkillExperienceList().get(0).equalsIgnoreCase("")){
+            bindingResult.rejectValue("skillExperienceList","error.job","Kỹ năng không được để trống");
+        }
         if(bindingResult.hasErrors()){
+            model.addAttribute("jobTypeList",jobTypeService.getAll());
+            model.addAttribute("levelTypeList",levelTypeService.findAll());
             return "createJob";
         }
         JobStatus jobStatus = jobStatusService.getById(1L);
@@ -165,7 +173,7 @@ public class JobController extends BaseController{
             return "editCompanyInfor";
         }
         companyService.editCompany(company);
-        return "redirect:/";
+        return "redirect:/company/"+company.getId();
     }
     @GetMapping("/company/{id}")
     public String getCompany(Model model,@PathVariable("id") Long id){

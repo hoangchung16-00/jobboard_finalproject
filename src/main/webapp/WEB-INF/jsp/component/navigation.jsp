@@ -24,14 +24,16 @@
                     <ul class="dropdown-menu animated fadeOutUp" style="display: none; opacity: 1;">
                         <li><a href="/findJob/All">Tìm kiếm công việc</a></li>
                         <c:if test="${isLogin}">
-                            <li><a href="/logout">Đăng xuất</a></li>
                             <c:if test="${account.accountrole.name=='User'}">
                                 <li><a href="/profile/${account.user.id}">Hồ sơ ứng viên</a></li>
+                                <li><a href="/applyList">Danh sách ứng tuyển</a></li>
                             </c:if>
                             <c:if test="${account.accountrole.name=='Company'}">
                                 <li><a href="/company/${account.company.id}">Hồ sơ nhà tuyển dụng</a></li>
                                 <li><a href="/approval/All">Yêu cầu ứng tuyển</a></li>
+                                <li><a href="/createJob">Đăng tin tuyển dụng</a></li>
                             </c:if>
+                            <li><a href="/logout">Đăng xuất</a></li>
                         </c:if>
                     </ul>
                 </li>

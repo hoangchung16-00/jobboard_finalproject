@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 @Entity
 @Table(name = "company")
@@ -15,7 +16,9 @@ import java.util.List;
 @NoArgsConstructor
 public class Company {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Tên không được để trống")
     private String name;
     private String shortdescription;
     private String address;
@@ -23,7 +26,9 @@ public class Company {
     private int foundationyear;
     private int employee;
     private String description;
+    @NotBlank(message = "Email không được dể trống")
     private String email;
+    @NotBlank(message = "SĐT không được để trống")
     private String phonenumber;
     private String image;
     @OneToOne

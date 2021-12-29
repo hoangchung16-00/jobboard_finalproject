@@ -6,23 +6,25 @@
         <form:form modelAttribute="job" method="post" action="/createJob">
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="name">Tên công việc</label>
-                    <form:input type="text" class="form-control" id="name" placeholder="Tên công việc" path="name"/>
+                    <label for="name">Tên công việc <form:errors path="name" cssClass="danger"/></label>
+                    <form:input type="text" class="form-control" id="name" path="name"/>
+
                 </div>
                 <div class="form-group col-md-4">
                     <label for="phone">Ngày hết hạn</label>
                     <form:input type="date" class="form-control" id="phone" placeholder="Ngày hết hạn" path="expiredate"/>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="phone">Loại công việc</label>
+                    <label for="phone">Loại công việc <form:errors path="jobTypeId" cssClass="danger"/></label>
                     <form:select class="form-control" id="phone" placeholder="Expire Date" path="jobTypeId">
                         <form:options cssClass="form-control" items="${jobTypeList}" itemLabel="name" itemValue="id"/>
                     </form:select>
+
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="address">Số lượng</label>
+                    <label for="address">Số lượng <form:errors path="number" cssClass="danger"/> </label>
                     <form:input type="text" class="form-control" id="address" placeholder="Số lượng" path="number"/>
                 </div>
                 <div class="form-group col-md-4">
@@ -36,23 +38,26 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <label for="address">Địa chỉ làm việc</label>
+                    <label for="address">Địa chỉ làm việc <form:errors path="address" cssClass="danger"/></label>
                     <form:input type="text" class="form-control" placeholder="Địa chỉ làm việc" path="address"/>
+
                 </div>
             </div>
             <div class="form-row" id="row-skill">
                 <input type="hidden" value="0"/>
                 <div class="form-group col-md-6">
-                    <label for="address">Yêu cầu kỹ năng</label>
+                    <label for="address">Yêu cầu kỹ năng <form:errors path="skillNameList" cssClass="danger"/></label>
                     <form:input type="text" class="form-control" id="skillName0" placeholder="Tên kỹ năng" path="skillNameList[0]"/>
+
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="address">Yêu cầu kinh nghiệm</label>
+                    <label for="address">Yêu cầu kinh nghiệm <form:errors path="skillExperienceList"/></label>
                     <form:select class="form-control" path="skillExperienceList[0]" id="skillEx0">
                         <form:options cssClass="form-control" items="${levelTypeList}" itemLabel="name" itemValue="id"/>
                     </form:select>
+
                 </div>
             </div>
             <div class="form-row">
@@ -68,8 +73,9 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <label for="education">Mô tả chi tiết</label>
+                    <label for="education">Mô tả chi tiết <form:errors path="description" cssClass="danger"/></label>
                     <form:textarea type="text" class="form-control" placeholder="Description" rows="4" path="description"/>
+
                 </div>
             </div>
             <div class="form-row">

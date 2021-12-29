@@ -13,12 +13,14 @@
                 <div class="form-group col-md-12">
                     <label for="name">Tên kỹ năng</label>
                     <form:input type="text" class="form-control" id="name" placeholder="Name" path="name"/>
+                    <form:errors path="name" cssClass="danger"/>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="experience">Kinh nghiệm</label>
                     <form:input type="text" class="form-control" id="experience" placeholder="Experience" path="experience"/>
+                    <form:errors path="experience"/>
                 </div>
             </div>
             <div class="form-row">

@@ -12,7 +12,7 @@
                     <div class="col-md-9 col-sm-9">
                         <div class="profile-content">
                             <c:if test="${account.user.id == user.id}">
-                                <a href="/editprofile" type="button" class="btn btn-primary">
+                                <a href="/editProfile" type="button" class="btn btn-primary">
                                     Chỉnh sửa hồ sơ
                                 </a>
                             </c:if>
