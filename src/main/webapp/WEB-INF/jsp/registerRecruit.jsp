@@ -4,7 +4,7 @@
 <section class="login-wrapper">
     <div class="container">
         <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-2">
-            <form:form action="/register" modelAttribute="registerForm" method="post">
+            <form:form action="/registerRecruit" modelAttribute="registerForm" method="post">
                 <h3>Đăng ký thành viên</h3>
                 <form:input type="text" class="form-control input-lg" placeholder="Tên đăng nhập" path="username"/>
                 <form:errors path="username" cssClass="danger"/>

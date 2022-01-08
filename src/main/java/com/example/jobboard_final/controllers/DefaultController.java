@@ -3,11 +3,13 @@ package com.example.jobboard_final.controllers;
 
 import com.example.jobboard_final.configs.RestFB;
 import com.example.jobboard_final.entities.Account;
+import com.example.jobboard_final.entities.Company;
 import com.example.jobboard_final.forms.LoginForm;
 
 import com.example.jobboard_final.forms.RegisterForm;
 import com.example.jobboard_final.services.AccountRoleService;
 import com.example.jobboard_final.services.AccountService;
+import com.example.jobboard_final.services.CompanyService;
 import com.example.jobboard_final.services.UserService;
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,22 +37,31 @@ import java.io.UnsupportedEncodingException;
 public class DefaultController extends BaseController{
     @Autowired
     private UserService userService;
+
     @Autowired
     private AccountService accountService;
+
     @Autowired
     private AccountRoleService accountRoleService;
+
+    @Autowired
+    private CompanyService companyService;
+
     @Autowired
     private RestFB restFb;
+
     @GetMapping("/404")
     public String getErrorNotFound(){
         return "404";
     }
+
     @GetMapping("/login")
     public String getLogin(Model model,@RequestParam(value = "error",defaultValue = "false") boolean error){
 
         model.addAttribute("loginForm",new LoginForm());
         return "login";
     }
+
     @GetMapping("/logout")
     public String getLogout(HttpServletRequest request, HttpServletResponse response){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -59,11 +70,40 @@ public class DefaultController extends BaseController{
         }
         return "redirect:/login";
     }
+
+    @GetMapping("/userType")
+    public String getUserType(){
+        return "userType";
+    }
+
+    @GetMapping("/registerRecruit")
+    public String getRegisterRecruit(Model model){
+        model.addAttribute("registerForm",new RegisterForm());
+        return "registerRecruit";
+    }
+
+    @PostMapping("/registerRecruit")
+    public String postRegisterRecruit(@Valid @ModelAttribute("registerForm") RegisterForm registerForm,BindingResult bindingResult,HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
+        if(!registerForm.getPassword().equals(registerForm.getRepassword())){
+            bindingResult.rejectValue("repassword","error.user","Password not match");
+        }
+        if(companyService.existsByEmail(registerForm.getEmail())){
+            bindingResult.rejectValue("email","error.user","Email has been register");
+        }
+        if(bindingResult.hasErrors()){
+            return "registerRecruit";
+        }
+        Account account = accountService.registerUser(registerForm,accountRoleService.getById(2L));
+        companyService.register(registerForm,account,getSiteURL(request));
+        return "redirect:/login";
+    }
+
     @GetMapping("/register")
     public String getRegister(Model model){
         model.addAttribute("registerForm",new RegisterForm());
         return "register";
     }
+
     @PostMapping("/register")
     public String postRegister(@Valid @ModelAttribute("registerForm") RegisterForm registerForm, BindingResult bindingResult, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
         if(bindingResult.hasErrors()){
@@ -71,15 +111,13 @@ public class DefaultController extends BaseController{
         }
         if(!registerForm.getPassword().equals(registerForm.getRepassword())){
             bindingResult.rejectValue("repassword","error.user","Password not match");
-            return "register";
         }
         if(userService.existsByEmail(registerForm.getEmail())){
             bindingResult.rejectValue("email","error.user","Email has been register");
-            return "register";
         }
         Account account = accountService.registerUser(registerForm,accountRoleService.getById(1L));
         userService.register(registerForm,account,getSiteURL(request));
-        return "redirect:/";
+        return "redirect:/login";
     }
 
 
@@ -91,7 +129,6 @@ public class DefaultController extends BaseController{
             return "redirect:/login?facebook=error";
         }
         String accessToken = restFb.getToken(code);
-
         com.restfb.types.User user = restFb.getUserInfo(accessToken);
         UserDetails userDetail = restFb.buildUser(user);
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,

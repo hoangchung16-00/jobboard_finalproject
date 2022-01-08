@@ -17,4 +17,6 @@ public interface CompanyRepository extends JpaRepository<Company,Long> {
 
     @Query("select c from Company c where c.id=?1")
     Company getById(Long id);
+
+    boolean existsByEmail(String email);
 }

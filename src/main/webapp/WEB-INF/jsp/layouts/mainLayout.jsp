@@ -1,5 +1,5 @@
 <%@ taglib  prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <!doctype html>
 
@@ -9,7 +9,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Jober Desk | Responsive Job Portal Template</title>
+    <title>Việc làm IT Việt Nam</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,13 +28,13 @@
 
 <body>
 
-<tiles:insertAttribute name="navigation"/>
+    <tiles:insertAttribute name="navigation"/>
 
 
-<tiles:insertAttribute name="body" />
+    <tiles:insertAttribute name="body" />
 
 
-<tiles:insertAttribute name="footer"/>
+    <tiles:insertAttribute name="footer"/>
 
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>

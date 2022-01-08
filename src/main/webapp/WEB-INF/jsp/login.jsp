@@ -17,7 +17,7 @@
                 <form:input type="password" class="form-control input-lg" placeholder="Mật khẩu" path="password"/>
                 <label><a href="">Quên mật khẩu?</a></label>
                 <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                <p>Chưa có tài khoản? <a href="/register">Đăng ký ngay</a></p>
+                <p>Chưa có tài khoản? <a href="/userType">Đăng ký ngay</a></p>
             </form:form>
 
             <a href="https://www.facebook.com/dialog/oauth?client_id=309386574033218&redirect_uri=https://tesabc.herokuapp.com/signin/facebook" class="btn btn-lg btn-social btn-facebook">

@@ -29,13 +29,10 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    private Environment env;
+    private EmailService emailService;
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private JavaMailSender javaMailSender;
 
     @Transactional
     public List<Users> getUsers(Pageable pageable){
@@ -89,31 +86,9 @@ public class UserService {
         user.setName(registerForm.getName());
         user.setImage("user.png");
         userRepository.save(user);
-        sendVerificationEmail(user,siteURL);
+        emailService.sendUserVerificationEmail(user,siteURL);
     }
 
-    private void sendVerificationEmail(Users user, String siteURL)
-            throws MessagingException, UnsupportedEncodingException {
-        String toAddress = user.getEmail();
-        String fromAddress = env.getProperty("spring.mail.username");
-        String senderName = "Job Board System";
-        String subject = "Please verify your registration";
-        String content = "Dear [[name]],<br>"
-                + "Please click the link below to verify your registration:<br>"
-                + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
-                + "Thank you,<br>"
-                + "Job Board System.";
-        MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-        helper.setFrom(fromAddress, senderName);
-        helper.setTo(toAddress);
-        helper.setSubject(subject);
-        content = content.replace("[[name]]", user.getName());
-        String verifyURL = siteURL + "/verify?code=" + user.getAccount().getVerificationcode();
-        content = content.replace("[[URL]]", verifyURL);
-        helper.setText(content, true);
-        javaMailSender.send(message);
-    }
 
     @Transactional
     public boolean existsByEmail(String email){

@@ -28,7 +28,6 @@ public class Company {
     private String description;
     @NotBlank(message = "Email không được dể trống")
     private String email;
-    @NotBlank(message = "SĐT không được để trống")
     private String phonenumber;
     private String image;
     @OneToOne

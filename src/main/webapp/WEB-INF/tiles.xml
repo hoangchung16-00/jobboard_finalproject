@@ -58,6 +58,12 @@
     <definition name="applyList" extends="mainLayout.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/userApplyList.jsp"/>
     </definition>
+    <definition name="userType" extends="mainLayout.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/userType.jsp"/>
+    </definition>
+    <definition name="registerRecruit" extends="mainLayout.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/registerRecruit.jsp"/>
+    </definition>
     <definition name="adminLayout.definition"
                 template="/WEB-INF/jsp/layouts/adminLayout.jsp">
         <put-attribute name="sidebar" value="/WEB-INF/jsp/component/admin/sidebar.jsp" />

@@ -1,16 +1,24 @@
 package com.example.jobboard_final.services;
 
+import com.example.jobboard_final.entities.Account;
 import com.example.jobboard_final.entities.Company;
 import com.example.jobboard_final.entities.MyUserDetails;
+import com.example.jobboard_final.forms.RegisterForm;
 import com.example.jobboard_final.repositories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 @Service
 public class CompanyService {
+    @Autowired
+    private EmailService emailService;
+
     @Autowired
     private CompanyRepository companyRepository;
 
@@ -65,5 +73,25 @@ public class CompanyService {
     @Transactional
     public String getImage(Long id){
         return getById(id).getImage();
+    }
+
+    @Transactional
+    public boolean existsByEmail(String email){
+        return companyRepository.existsByEmail(email);
+    }
+
+    @Transactional
+    public void register(RegisterForm registerForm, Account account, String siteURL) throws UnsupportedEncodingException, MessagingException {
+        Company company = new Company();
+        company.setEmail(registerForm.getEmail());
+        company.setAccount(account);
+        company.setName(registerForm.getName());
+        company.setShortdescription("");
+        company.setAddress("");
+        company.setPhonenumber("");
+        company.setEmployee(1);
+        company.setImage("company.png");
+        companyRepository.save(company);
+        emailService.sendCompanyVerificationEmail(company,siteURL);
     }
 }
