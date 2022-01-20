@@ -4,7 +4,6 @@
 <%@ taglib  prefix="tag-date" tagdir="/WEB-INF/tags"%>
 <%@ taglib  prefix="tag-pageable" tagdir="/WEB-INF/tags"%>
 <div class="container">
-
     <div style="height:1000px; width:100%; clear:both;">
         <table class="table table-striped">
             <div style="height:10px; width:100%; clear:both;"></div>
@@ -15,7 +14,37 @@
                     <th scope="col">Họ tên</th>
                     <th scope="col">Số điện thoại</th>
                     <th scope="col">Công việc ứng tuyển</th>
-                    <th scope="col"><button class="btn-title">Thời gian ứng tuyển<i class="fa fa-angle-down" style="font-size:24px"></i></button> </th>
+                    <th scope="col">
+                        <a class="btn-title" onclick="changeOrder()"
+                           <c:if test="${empty param.get('page')}">
+                                <c:if test="${currentOrder=='asc'}">
+                                    href="?order=desc"
+                                </c:if>
+                               <c:if test="${currentOrder=='desc'}">
+                                   href="?order=asc"
+                               </c:if>
+                           </c:if>
+                            <c:if test="${not empty param.get('page')}">
+                                <c:if test="${currentOrder=='asc'}">
+                                    href="?order=desc&page=${param.get('page')}"
+                                </c:if>
+                                <c:if test="${currentOrder=='desc'}">
+                                    href="?order=asc&page=${param.get('page')}"
+                                </c:if>
+                            </c:if>
+                        >
+                            Thời gian ứng tuyển
+                            <i
+                                <c:if test="${empty param.get('order') or param.get('order').equalsIgnoreCase('desc')}">
+                                    class="fa fa-angle-down"
+                                </c:if>
+                                <c:if test="${param.get('order').equalsIgnoreCase('asc')}">
+                                    class="fa fa-angle-up"
+                                </c:if>
+                                style="font-size:24px">
+                            </i>
+                        </a>
+                    </th>
                     <th scope="col">Trạng thái</th>
                     <th scope="col"></th>
                 </tr>

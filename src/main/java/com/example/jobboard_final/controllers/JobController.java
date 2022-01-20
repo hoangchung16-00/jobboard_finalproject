@@ -6,6 +6,7 @@ import com.example.jobboard_final.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 @Controller
 public class JobController extends BaseController{
@@ -69,8 +72,13 @@ public class JobController extends BaseController{
     }
 
     @GetMapping("/approval/{status}")
-    public String getApproval(Model model,@RequestParam(value = "page", defaultValue = "1") int page,@PathVariable("status") String status){
-        Pageable pageable= PageRequest.of(page-1,PAGE_SIZE);
+    public String getApproval(Model model,@RequestParam(value = "page", defaultValue = "1") int page,@PathVariable("status") String status,@RequestParam(value = "order",defaultValue = "desc") String order){
+        Pageable pageable;
+        if(order.equalsIgnoreCase("asc")){
+            pageable = PageRequest.of(page-1,PAGE_SIZE, Sort.by("applytime").ascending());
+        } else {
+            pageable = PageRequest.of(page-1,PAGE_SIZE, Sort.by("applytime").descending());
+        }
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Company company = ((MyUserDetails) principal).getUser().getCompany();
         List<RequestRecruit> recruitList;
@@ -86,25 +94,30 @@ public class JobController extends BaseController{
         model.addAttribute("currentPage",page);
         model.addAttribute("statusList",statusService.getAll());
         model.addAttribute("currentFilter",status);
+        model.addAttribute("currentOrder",order);
         return "approval";
     }
 
     @GetMapping("/findJob/{search}")
-    public String getFindJob(Model model,@RequestParam(value = "page",defaultValue = "1") int page,@PathVariable("search") String search){
+    public String getFindJob(Model model,@RequestParam(value = "page",defaultValue = "1") int page,@RequestParam(value = "filter",defaultValue = "1234") String filter,@PathVariable("search") String search){
         int totalPage;
         Pageable pageable= PageRequest.of(page-1,PAGE_SIZE);
+        List<JobType> jobTypeList = jobTypeService.getAll();
         if(search.equalsIgnoreCase("all")){
             model.addAttribute("jobs",jobServices.getJobs(pageable));
             totalPage  = (jobServices.getTotalJob()+PAGE_SIZE-1)/PAGE_SIZE;
         } else {
-            model.addAttribute("jobs",jobServices.findJobByKeyword(search.toLowerCase(),pageable));
-            totalPage  = (jobServices.getTotalJobByKeyword(search.toLowerCase())+PAGE_SIZE-1)/PAGE_SIZE;
-        }
-        if(page > totalPage || page < 1){
-            return "/404";
+            List<Long> filters = new ArrayList<>();
+            for (JobType jobType : jobTypeList) {
+                if(filter.contains(jobType.getId().toString())){
+                    filters.add(jobType.getId());
+                }
+            }
+            model.addAttribute("jobs",jobServices.findJobByKeyword(search.toLowerCase(),filters,pageable));
+            totalPage  = (jobServices.getTotalJobByKeyword(search.toLowerCase(),filters)+PAGE_SIZE-1)/PAGE_SIZE;
         }
         model.addAttribute("totalPage",totalPage);
-        model.addAttribute("jobTypes",jobTypeService.getAll());
+        model.addAttribute("jobTypes",jobTypeList);
         model.addAttribute("currentPage",page);
         return "findJob";
     }

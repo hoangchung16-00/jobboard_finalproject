@@ -106,14 +106,14 @@ public class DefaultController extends BaseController{
 
     @PostMapping("/register")
     public String postRegister(@Valid @ModelAttribute("registerForm") RegisterForm registerForm, BindingResult bindingResult, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
-        if(bindingResult.hasErrors()){
-            return "register";
-        }
         if(!registerForm.getPassword().equals(registerForm.getRepassword())){
             bindingResult.rejectValue("repassword","error.user","Password not match");
         }
         if(userService.existsByEmail(registerForm.getEmail())){
             bindingResult.rejectValue("email","error.user","Email has been register");
+        }
+        if(bindingResult.hasErrors()){
+            return "register";
         }
         Account account = accountService.registerUser(registerForm,accountRoleService.getById(1L));
         userService.register(registerForm,account,getSiteURL(request));

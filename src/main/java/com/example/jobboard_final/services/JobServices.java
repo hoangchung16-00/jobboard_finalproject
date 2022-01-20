@@ -23,7 +23,7 @@ public class JobServices {
         for (Job job: jobs) {
             job.getSkillJobList().size();
         }
-        return jobRepository.getJobs(pageable);
+        return jobs;
     }
 
     @Transactional
@@ -44,8 +44,8 @@ public class JobServices {
     }
 
     @Transactional
-    public List<Job> findJobByKeyword(String keyword,Pageable pageable){
-        List<Job> jobs = jobRepository.findJobByKeyword(keyword,pageable);
+    public List<Job> findJobByKeyword(String keyword,List<Long> filter,Pageable pageable){
+        List<Job> jobs = jobRepository.findJobByKeyword(keyword,filter,pageable);
         for (Job job : jobs) {
             job.getSkillJobList().size();
         }
@@ -53,8 +53,8 @@ public class JobServices {
     }
 
     @Transactional
-    public int getTotalJobByKeyword(String keyword){
-        return jobRepository.getTotalJobByKeyword(keyword);
+    public int getTotalJobByKeyword(String keyword,List<Long> filter){
+        return jobRepository.getTotalJobByKeyword(keyword,filter);
     }
 
     @Transactional

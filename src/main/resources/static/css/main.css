@@ -614,7 +614,7 @@ background:#007ffe;
 border-radius:1px;
 padding:1em 2em;
 display:block;
-margin-top:25px;
+margin-top:12px;
 width:100%;
 color:#ffffff;
 }
@@ -700,10 +700,10 @@ border:2px solid #40af37;
 background: #40af37;
 }
 .checkbox-custom + .Freelance.checkbox-custom-label:before, .radio-custom + .Freelance.radio-custom-label:before {
-border:2px solid #0080ff;
+border:2px solid #1964a7;
 }
 .checkbox-custom:checked + .Freelance.checkbox-custom-label:before {
-background: #0080ff;
+background: #1964a7;
 }
 .checkbox-custom + .Internship.checkbox-custom-label:before, .radio-custom + .Internship.radio-custom-label:before {
 border:2px solid #ef183c;

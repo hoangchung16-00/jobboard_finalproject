@@ -16,21 +16,36 @@
                     <button type="submit" class="form-button" onclick="searchJob(${currentPage})">Tìm kiếm</button>
                 </div>
             </div>
-            <%--<div class="filter">
+            <div class="filter">
                 <div class="col-md-2 col-sm-3">
-                    <p>Find By:</p>
                 </div>
                 <div class="col-md-10 col-sm-9">
                     <ul class="filter-list">
                         <c:forEach items="${jobTypes}" var="item">
                             <li>
-                                <input id="checkbox-${item.id}" class="checkbox-custom" name="checkbox-${item.id}" type="checkbox">
+                                <input
+                                    <c:if test="${empty param.get('page')}">
+                                        <c:if test="${empty param.get('filter')}">
+                                            onclick="window.location.href='?filter=${item.id}'"
+                                        </c:if>
+                                        <c:if test="${not empty param.get('filter')}">
+                                            <c:if test="${param.get('filter').toString().contains(item.id.toString())}">
+                                                onclick="window.location.href='?filter=${param.get('filter').replace(item.id.toString(),'')}'"
+                                            </c:if>
+                                            <c:if test="${not param.get('filter').toString().contains(item.id.toString())}">
+                                                onclick="window.location.href='?filter=${param.get('filter').concat(item.id)}'"
+                                            </c:if>
+                                        </c:if>
+                                    </c:if>
+
+                                    id="checkbox-${item.id}" class="checkbox-custom" name="checkbox-${item.id}" type="checkbox"
+                                />
                                 <label for="checkbox-${item.id}" class="${item.name} checkbox-custom-label">${item.name}</label>
                             </li>
                         </c:forEach>
                     </ul>
                 </div>
-            </div>--%>
+            </div>
         </div>
         <div class="companies">
             <c:forEach items="${jobs}" var="job">
