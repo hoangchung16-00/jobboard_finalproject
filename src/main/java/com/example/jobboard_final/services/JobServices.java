@@ -64,6 +64,19 @@ public class JobServices {
         Job job = new Job(jobForm.getName(),jobForm.getShortdescription(),jobForm.getDescription(),jobForm.getAddress(),jobForm.getNumber(),jobForm.getMinsalary(),jobForm.getMaxsalary(),date,new Date(),jobForm.getBenefit(),jobStatus,company,jobType);
         return jobRepository.save(job);
     }
-    
+
+    @Transactional
+    public List<Job> getJobsByFilter(List<Long> filter,Pageable pageable){
+        List<Job> jobs = jobRepository.getJobsByFilter(filter,pageable);
+        for (Job job : jobs) {
+            job.getSkillJobList().size();
+        }
+        return jobs;
+    }
+
+    @Transactional
+    public int getTotalJobByFilter(List<Long> filter){
+        return jobRepository.getTotalJobByFilter(filter);
+    }
 
 }

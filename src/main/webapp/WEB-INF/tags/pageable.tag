@@ -8,11 +8,14 @@
             <c:if test="${totalPage > 1}">
                 <li class="page-item <c:if test="${currentPage==1}">disabled</c:if>" >
                     <a class="page-link"
-                        <c:if test="${empty param.get('order')}">
+                        <c:if test="${empty param.get('order') and empty param.get('filter')}">
                            href="?page=${currentPage-1}"
                         </c:if>
                         <c:if test="${not empty param.get('order')}">
                             href="?order=${param.get('order')}page=${currentPage-1}"
+                        </c:if>
+                        <c:if test="${not empty param.get('filter')}">
+                            href="?filter=${param.get('filter')}&page=${currentPage-1}"
                         </c:if>
                        tabindex="-1">Previous
                     </a>
@@ -21,23 +24,30 @@
             <c:forEach begin="1" end="${totalPage}" varStatus="index">
                 <li class="page-item <c:if test="${currentPage==index.index}">active </c:if>">
                     <a class="page-link"
-                        <c:if test="${empty param.get('order')}">
-                            href="?page=${index.index}">${index.index}
+                        <c:if test="${empty param.get('order') and empty param.get('filter')}">
+                            href="?page=${index.index}"
                         </c:if>
                         <c:if test="${not empty param.get('order')}">
-                            href="?order=${param.get('order')}&page=${index.index}">${index.index}
+                            href="?order=${param.get('order')}&page=${index.index}"
                         </c:if>
+                        <c:if test="${not empty param.get('filter')}">
+                            href="?filter=${param.get('filter')}&page=${index.index}"
+                        </c:if>
+                        >${index.index}
                     </a>
                 </li>
             </c:forEach>
             <c:if test="${totalPage > 1}">
                 <li class="page-item <c:if test="${currentPage==(totalPage)}">disabled</c:if>" >
                     <a class="page-link"
-                        <c:if test="${empty param.get('order')}">
+                        <c:if test="${empty param.get('order') and empty param.get('filter')}">
                            href="?page=${currentPage+1}"
                         </c:if>
                         <c:if test="${empty param.get('order')}">
                             href="?order=${param.get('order')}page=${currentPage+1}"
+                        </c:if>
+                        <c:if test="${empty param.get('filter')}">
+                            href="?filter=${param.get('filter')}page=${currentPage+1}"
                         </c:if>
                         >Next
                     </a>

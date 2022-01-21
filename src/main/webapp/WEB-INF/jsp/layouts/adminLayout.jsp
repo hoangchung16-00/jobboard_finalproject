@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Job Dashboard</title>
+    <title>Việc làm IT Việt Nam</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="/admin/css/tailwind.output.css" />
     <link rel="stylesheet" href="/admin/css/main.css" />
@@ -20,14 +20,13 @@
 <body>
 <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
 
-<%--    <!--      sidebar-->
-    <tiles:insertAttribute name="sidebar"/>--%>
+    <!--      sidebar-->
+    <tiles:insertAttribute name="sidebar"/>
     <div class="flex flex-col flex-1 w-full">
         <!--        navigation-->
         <tiles:insertAttribute name="navigation"/>
         <main class="h-full overflow-y-auto">
             <div class="container px-6 mx-auto grid">
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Dashboard</h2>
                 <tiles:insertAttribute name="body" />
             </div>
         </main>

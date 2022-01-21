@@ -1251,3 +1251,7 @@ body {
 #message {
     font-size: 20px;
 }
+
+#keyword {
+    padding-left: 20px;
+}

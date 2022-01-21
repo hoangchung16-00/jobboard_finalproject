@@ -22,12 +22,12 @@ public class CompanyController extends BaseController {
         if(page> totalPage){
             return "redirect:/404";
         }
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Pageable pageable= PageRequest.of(page-1,PAGE_SIZE);
         model.addAttribute("totalPage",totalPage);
         model.addAttribute("currentPage",page);
         model.addAttribute("companies",companyService.getCompanies(pageable));
         model.addAttribute("total",companyService.getTotalCompany());
+        model.addAttribute("active","company");
         return "admin/company";
     }
 

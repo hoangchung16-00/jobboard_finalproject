@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!-- With avatar -->
-<h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">Company List</h4>
+<h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">Danh sách nhà tuyển dụng</h4>
 <!-- Divs are used just to display the examples. Use only the button. -->
 
 <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
@@ -8,13 +9,11 @@
         <table class="w-full whitespace-no-wrap">
             <thead>
             <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                <th class="px-4 py-3">Company</th>
-                <th class="px-4 py-3">Address</th>
+                <th class="px-4 py-3">Nhà tuyển dụng</th>
+                <th class="px-4 py-3">Địa chỉ</th>
                 <th class="px-4 py-3">Website</th>
                 <th class="px-4 py-3">Email</th>
-                <th class="px-4 py-3">Phone</th>
-                <th class="px-4 py-3">Total Job</th>
-
+                <th class="px-4 py-3">SĐT</th>
             </tr>
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -37,7 +36,6 @@
                     <td class="px-4 py-3 text-xs"><a href="${company.website}" target="_blank">${company.website}</a></td>
                     <td class="px-4 py-3 text-sm">${company.email}</td>
                     <td class="px-4 py-3 text-sm">${company.phonenumber}</td>
-                    <td class="px-4 py-3 text-sm">${company.jobList.size()}</td>
                 </tr>
             </c:forEach>
             </tbody>

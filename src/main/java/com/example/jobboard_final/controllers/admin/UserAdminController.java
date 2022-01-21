@@ -26,6 +26,7 @@ public class UserAdminController extends BaseController {
         model.addAttribute("currentPage",page);
         model.addAttribute("users",userService.getUsers(pageable));
         model.addAttribute("total",userService.getTotalUser());
+        model.addAttribute("active","user");
         return "admin/user";
     }
 }

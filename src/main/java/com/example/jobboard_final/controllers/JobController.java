@@ -103,22 +103,24 @@ public class JobController extends BaseController{
         int totalPage;
         Pageable pageable= PageRequest.of(page-1,PAGE_SIZE);
         List<JobType> jobTypeList = jobTypeService.getAll();
-        if(search.equalsIgnoreCase("all")){
-            model.addAttribute("jobs",jobServices.getJobs(pageable));
-            totalPage  = (jobServices.getTotalJob()+PAGE_SIZE-1)/PAGE_SIZE;
-        } else {
-            List<Long> filters = new ArrayList<>();
-            for (JobType jobType : jobTypeList) {
-                if(filter.contains(jobType.getId().toString())){
-                    filters.add(jobType.getId());
-                }
+        List<Long> filters = new ArrayList<>();
+        for (JobType jobType : jobTypeList) {
+            if(filter.contains(jobType.getId().toString())){
+                filters.add(jobType.getId());
             }
+        }
+        if(search.equalsIgnoreCase("all")){
+            model.addAttribute("jobs",jobServices.getJobsByFilter(filters,pageable));
+            totalPage  = (jobServices.getTotalJobByFilter(filters)+PAGE_SIZE-1)/PAGE_SIZE;
+        } else {
+
             model.addAttribute("jobs",jobServices.findJobByKeyword(search.toLowerCase(),filters,pageable));
             totalPage  = (jobServices.getTotalJobByKeyword(search.toLowerCase(),filters)+PAGE_SIZE-1)/PAGE_SIZE;
         }
         model.addAttribute("totalPage",totalPage);
         model.addAttribute("jobTypes",jobTypeList);
         model.addAttribute("currentPage",page);
+        model.addAttribute("search",search);
         return "findJob";
     }
 
