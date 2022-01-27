@@ -12,7 +12,7 @@
                 <form:errors path="password" cssClass="danger"/>
                 <form:input type="password" class="form-control input-lg" placeholder="Xác nhận mật khẩu" path="repassword"/>
                 <form:errors path="repassword" cssClass="danger"/>
-                <form:input type="text" class="form-control input-lg" placeholder="Họ tên" path="name"/>
+                <form:input type="text" class="form-control input-lg" placeholder="Tên nhà tuyển dụng" path="name"/>
                 <form:errors path="name" cssClass="danger"/>
                 <form:input type="text" class="form-control input-lg" placeholder="Email" path="email"/>
                 <form:errors path="email" cssClass="danger"/>

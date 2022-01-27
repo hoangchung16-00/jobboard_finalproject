@@ -79,4 +79,7 @@
     <definition name="admin/user" extends="adminLayout.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/user.jsp"/>
     </definition>
+    <definition name="admin/job" extends="adminLayout.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/job.jsp"/>
+    </definition>
 </tiles-definitions>

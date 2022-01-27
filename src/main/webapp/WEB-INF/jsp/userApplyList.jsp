@@ -28,7 +28,7 @@
                         <td> <tag-date:date date="${request.applytime}"/></td>
                         <td><tag-date:date date="${request.job.expiredate}"/></td>
                         <td>${request.status.name}</td>
-                        <td><button class="btn btn-success">Xem thông tin nhà tuyển dụng</button></td>
+                        <td><a class="btn btn-success" href="/company/${request.job.company.id}" target="_blank">Xem thông tin nhà tuyển dụng</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

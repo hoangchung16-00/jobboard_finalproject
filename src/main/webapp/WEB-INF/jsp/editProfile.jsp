@@ -39,9 +39,9 @@
                 <div class="form-group col-md-3">
                     <label for="gender">Giới tính </label>
                     <form:select id="gender" class="form-control" path="gender">
-                        <form:option value="Male" label="Male"/>
-                        <form:option value="Female" label="Female"/>
-                        <form:option value="Other" label="Other"/>
+                        <form:option value="Male" label="Nam"/>
+                        <form:option value="Female" label="Nữ"/>
+                        <form:option value="Other" label="Khác"/>
                     </form:select>
                 </div>
 

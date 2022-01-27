@@ -47,7 +47,6 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-
                             <ul>
                                 <c:forEach items="${user.skillUsersList}" var="skill">
                                     <li>${skill.name} -  ${skill.experience}</li>
@@ -75,8 +74,6 @@
                             <p>${user.education}</p>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib  prefix="tag-money" tagdir="/WEB-INF/tags"%>
 
-<%@ attribute name="job" required="true" type="com.example.jobboard_final.entities.Job" %>
+<%@ attribute name="job" required="true" type="com.example.job.entities.Job" %>
 <div class="company-list">
     <div class="row">
         <div class="col-md-2 col-sm-2">

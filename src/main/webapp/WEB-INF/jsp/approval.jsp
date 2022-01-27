@@ -59,7 +59,7 @@
                     <td><tag-date:date date="${request.applytime}"/></td>
                     <td id="status${request.id}">${request.status.name}</td>
                     <td>
-                        <a href="/profile/${request.user.id}" type="button" class="btn btn-info">Xem hồ sơ</a>
+                        <a href="/profile/${request.user.id}" type="button" class="btn btn-info" target="_blank">Xem hồ sơ</a>
                         <a href="#" type="button" class="btn btn-success <c:if test="${request.status.id == 1 || request.status.id == 2}">disabled</c:if>" onclick="accept(${request.id})">Đồng ý</a>
                         <a href="#" type="button" class="btn btn-danger <c:if test="${request.status.id == 2 || request.status.id == 1}">disabled</c:if>"  onclick="deny(${request.id})">Từ chối</a>
                     </td>
