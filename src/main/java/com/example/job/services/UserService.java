@@ -10,6 +10,7 @@ import com.example.job.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -124,7 +125,9 @@ public class UserService {
         user.setHobby(editProfileForm.getHobby());
         user.setPhonenumber(editProfileForm.getPhonenumber());
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        ((MyUserDetails) principal).getUser().setUser(user);
+        if(principal instanceof MyUserDetails) {
+            ((MyUserDetails) principal).getUser().setUser(user);
+        }
         userRepository.save(user);
     }
 }

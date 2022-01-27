@@ -70,7 +70,7 @@ public class UserClientController extends BaseController{
     }
 
     @PostMapping("/editProfile")
-    public String postEditProfile(@RequestParam("imageUser") MultipartFile image, @Valid @ModelAttribute("editProfileForm") EditProfileForm editProfileForm, BindingResult bindingResult, Model model) throws ParseException, IOException {
+    public String postEditProfile(@RequestParam(value = "imageUser") MultipartFile image, @Valid @ModelAttribute("editProfileForm") EditProfileForm editProfileForm, BindingResult bindingResult, Model model) throws ParseException, IOException {
         if(!image.isEmpty()){
             String fileName =editProfileForm.getId().toString()+"user" + image.getOriginalFilename();
             String oldFileName = editProfileForm.getImage();
@@ -105,10 +105,10 @@ public class UserClientController extends BaseController{
             return "editProfile";
         }
         userService.editUser(editProfileForm);
-        skillUsersService.editListSkill(editProfileForm.getSkillIdList(),editProfileForm.getSkillNameList(),editProfileForm.getSkillExperienceList());
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Account account = ((MyUserDetails) principal).getUser();
-        return "redirect:/profile/" + account.getUser().getId();
+        if(editProfileForm.getSkillIdList() != null) {
+            skillUsersService.editListSkill(editProfileForm.getSkillIdList(),editProfileForm.getSkillNameList(),editProfileForm.getSkillExperienceList());
+        }
+        return "redirect:/profile/" + editProfileForm.getId();
     }
 
     @GetMapping("/addSkill")
