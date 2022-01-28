@@ -20,7 +20,7 @@
                 <p>Chưa có tài khoản? <a href="/userType">Đăng ký ngay</a></p>
             </form:form>
 
-            <a href="https://www.facebook.com/dialog/oauth?client_id=309386574033218&redirect_uri=https://https://jobdesk.herokuapp.com/signin/facebook" class="btn btn-lg btn-social btn-facebook">
+            <a href="https://www.facebook.com/dialog/oauth?client_id=309386574033218&redirect_uri=https://jobdesk.herokuapp.com/signin/facebook" class="btn btn-lg btn-social btn-facebook">
                 <i class="fa fa-facebook fa-fw"></i>Đăng nhập với Facebook
             </a>
             <a class="btn btn-lg btn-social btn-google">
