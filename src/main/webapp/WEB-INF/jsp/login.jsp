@@ -11,9 +11,7 @@
                         Tên đăng nhập hoặc mật khẩu không hợp lệ
                     </div>
                 </c:if>
-
                 <form:input type="text" class="form-control input-lg" placeholder="Tên đăng nhập" path="username"/>
-
                 <form:input type="password" class="form-control input-lg" placeholder="Mật khẩu" path="password"/>
                 <label><a href="">Quên mật khẩu?</a></label>
                 <button type="submit" class="btn btn-primary">Đăng nhập</button>

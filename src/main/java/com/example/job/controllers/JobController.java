@@ -111,7 +111,6 @@ public class JobController extends BaseController{
             model.addAttribute("jobs",jobServices.getJobsByFilter(filters,pageable));
             totalPage  = (jobServices.getTotalJobByFilter(filters)+PAGE_SIZE-1)/PAGE_SIZE;
         } else {
-
             model.addAttribute("jobs",jobServices.findJobByKeyword(search.toLowerCase(),filters,pageable));
             totalPage  = (jobServices.getTotalJobByKeyword(search.toLowerCase(),filters)+PAGE_SIZE-1)/PAGE_SIZE;
         }
