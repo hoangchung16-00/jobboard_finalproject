@@ -90,7 +90,7 @@ public class AjaxController {
             return "redirect:/404";
         }
         requestRecruitService.setRequestStatus(id,statusService.getById(1L));
-        emailService.sendDenyEmail(requestRecruitService.getById(id).getJob().getCompany(),requestRecruitService.getById(id).getUser());
+        emailService.sendAcceptEmail(requestRecruitService.getById(id).getJob().getCompany(),requestRecruitService.getById(id).getUser());
         String message = "This request has been accept";
         Gson gson = new Gson();
         return gson.toJson(message);

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface JobRepository extends JpaRepository<Job,Long> {
@@ -19,7 +20,7 @@ public interface JobRepository extends JpaRepository<Job,Long> {
     Job getJobById(Long id);
     boolean existsById(Long id);
 
-    @Query("select j from Job j,SkillJob sj where (lower(j.name) like %:keyword% or lower(j.jobType.name) like %:keyword% or lower(sj.levelType.name) like %:keyword% or lower(j.description) like %:keyword% or lower(j.company.name) like %:keyword% or lower(j.address) like %:keyword% or lower(sj.name) like %:keyword%) and (j.jobType.id in :filter)")
+    @Query("select j from Job j,SkillJob sj where (lower(j.name) like %:keyword% or lower(j.jobType.name) like %:keyword% or lower(sj.levelType.name) like %:keyword% or lower(j.description) like %:keyword% or lower(j.company.name) like %:keyword% or lower(j.address) like %:keyword% or lower(sj.name) like %:keyword%) and (j.jobType.id in :filter) order by j.postdate desc")
     List<Job> findJobByKeyword(@Param("keyword") String keyword, @Param("filter") List<Long> filter, Pageable pageable);
 
     @Query("select count(j) from Job j,SkillJob sj where (lower(j.name) like %:keyword% or lower(j.jobType.name) like %:keyword% or lower(sj.levelType.name) like %:keyword% or lower(j.description) like %:keyword% or lower(j.company.name) like %:keyword% or lower(j.address) like %:keyword% or lower(sj.name) like %:keyword% ) and j.jobType.id in :filter")

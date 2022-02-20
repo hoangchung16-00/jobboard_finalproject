@@ -49,6 +49,7 @@ public class JobServices {
         List<Job> jobs = jobRepository.findJobByKeyword(keyword,filter,pageable);
         for (Job job : jobs) {
             job.getSkillJobList().size();
+
         }
         return jobs;
     }

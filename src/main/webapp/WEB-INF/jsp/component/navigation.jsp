@@ -20,7 +20,7 @@
                     <li><a href="/login">Đăng nhập</a></li>
                 </c:if>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mở rộng</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu</a>
                     <ul class="dropdown-menu animated fadeOutUp" style="display: none; opacity: 1;">
                         <li><a href="/findJob/All">Tìm kiếm công việc</a></li>
                         <c:if test="${isLogin}">

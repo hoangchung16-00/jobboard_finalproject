@@ -61,7 +61,9 @@ public class RequestRecruitService {
 
     @Transactional
     public RequestRecruit getById(Long id){
-        return requestRecruitRepository.getById(id);
+        RequestRecruit requestRecruit = requestRecruitRepository.getById(id);
+        requestRecruit.getJob();
+        return requestRecruit;
     }
 
     @Transactional

@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -66,6 +67,7 @@ public class JobController extends BaseController{
         }
         Job job = jobServices.getJobById(id);
         model.addAttribute("job",job);
+        model.addAttribute("datenow",new Date());
         return "jobDetail";
     }
 

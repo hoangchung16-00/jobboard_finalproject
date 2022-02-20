@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib  prefix="tag-date" tagdir="/WEB-INF/tags"%>
 <section class="profile-detail">
     <div class="container">
         <div class="col-md-12">
@@ -10,6 +11,9 @@
                     </div>
                     <div class="col-md-9 col-sm-9">
                         <div class="profile-content">
+                            <c:if test="${account.accountrole.name=='User' and job.expiredate < datenow}">
+                                <p class="danger">Tin tuyển dụng đã hết hạn</p>
+                            </c:if>
                             <c:if test="${account.accountrole.name=='User'}">
                                 <button onclick="apply(${job.id},${isLogin});" id="applyjob" type="button" class="btn btn-primary">
                                     Ứng tuyển
@@ -18,6 +22,7 @@
                             <c:if test="${account.accountrole.name!='User'}">
                                 <p class="danger">Vui lòng đăng nhập với tư cách ứng viên để ứng tuyển</p>
                             </c:if>
+
                             <h2>${job.company.name}<span>${job.name} (${job.jobStatus.name})</span></h2>
                             <p>Số lượng tuyển dụng: (${job.number})</p>
                             <ul class="information">
@@ -25,6 +30,7 @@
                                 <li><span>Địa chỉ làm việc:</span>${job.address}</li>
                                 <li><span>Website:</span><a href="${job.company.website}" target="_blank">${job.company.website}</a></li>
                                 <li><span>Mail:</span>${job.company.email}</li>
+                                <li><span>Ngày hết hạn:</span><tag-date:date date="${job.expiredate}"/></li>
                             </ul>
                         </div>
                     </div>
@@ -58,7 +64,15 @@
                             </ul>
                         </div>
                     </div>
-
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-user fa-fw"></i> Đãi ngộ
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <p>${job.benefit}</p>
+                        </div>
+                    </div>
                     <%--<div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-coffee fa-fw"></i> Minimum qualifications:

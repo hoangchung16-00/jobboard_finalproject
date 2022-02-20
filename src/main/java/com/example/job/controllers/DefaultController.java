@@ -121,7 +121,6 @@ public class DefaultController extends BaseController{
     @RequestMapping("/signin/facebook")
     public String loginFacebook(HttpServletRequest request) throws ClientProtocolException, IOException {
         String code = request.getParameter("code");
-
         if (code == null || code.isEmpty()) {
             return "redirect:/login?facebook=error";
         }

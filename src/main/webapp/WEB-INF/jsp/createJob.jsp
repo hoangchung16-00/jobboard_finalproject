@@ -74,7 +74,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <label for="address">Lợi ích</label>
+                    <label for="address">Đãi ngộ</label>
                     <form:textarea rows="4" type="text" class="form-control" placeholder="Benefit" path="benefit"/>
                 </div>
             </div>

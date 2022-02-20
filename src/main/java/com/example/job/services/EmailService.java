@@ -7,6 +7,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -21,7 +22,7 @@ public class EmailService {
     private JavaMailSender javaMailSender;
 
     private static String SENDERNAME = "Job Board System";
-
+    @Transactional
     public void sendUserVerificationEmail(Users user, String siteURL)
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
@@ -43,7 +44,7 @@ public class EmailService {
         helper.setText(content, true);
         javaMailSender.send(message);
     }
-
+    @Transactional
     public void sendCompanyVerificationEmail(Company company, String siteURL)
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = company.getEmail();
@@ -65,7 +66,7 @@ public class EmailService {
         helper.setText(content, true);
         javaMailSender.send(message);
     }
-
+    @Transactional
     public void sendAcceptEmail(Company company,Users users) throws UnsupportedEncodingException, MessagingException {
         String toAddress = users.getEmail();
         String fromAddress = env.getProperty("spring.mail.username");
@@ -85,7 +86,7 @@ public class EmailService {
         helper.setText(content,true);
         javaMailSender.send(message);
     }
-
+    @Transactional
     public void sendDenyEmail(Company company,Users users) throws UnsupportedEncodingException, MessagingException {
         String toAddress = users.getEmail();
         String fromAddress = env.getProperty("spring.mail.username");

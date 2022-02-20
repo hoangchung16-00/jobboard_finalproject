@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-2 col-sm-2">
             <div class="company-content">
-                <a href="/jobdetail/${job.id}" class="btn view-job" name="View Job">View Job</a>
+                <a href="/jobdetail/${job.id}" class="btn view-job" name="View Job">Xem chi tiết</a>
             </div>
         </div>
 

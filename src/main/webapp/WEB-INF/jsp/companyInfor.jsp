@@ -15,6 +15,7 @@
                             <ul class="information">
                                 <li><span>Địa chỉ:</span>${company.address}</li>
                                 <li><span>Số diện thoại:</span>${company.phonenumber}</li>
+                                <li><span>Số lượng nhân viên:</span>${company.employee}</li>
                                 <li><span>Mail:</span>${company.email}</li>
                                 <li><span>Website:</span><a href="${company.website}" target="_blank">${company.website}</a></li>
                          </ul>
